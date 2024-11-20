@@ -27,7 +27,7 @@ if(parser.Success)
 }
 ```
 
-### Example suing streams
+### Example using streams
 
 ```
 var stream = new MemoryStream(...)

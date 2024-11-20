@@ -16,13 +16,30 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: '0'
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+    - name: Apply version
+      run: |
+           export PATH="$PATH:/root/.dotnet/tools:/gitversion"
+           dotnet tool install --global GitVersion.Tool --version 5.12.0
+           dotnet-gitversion /updateprojectfiles
+           export SEMVER=`dotnet-gitversion -showvariable SemVer`
+           echo "SEMVER=$SEMVER"
     - name: Restore dependencies
       run: dotnet restore src/MSDMarkwort.Kicad.sln
     - name: Build
       run: dotnet build src/MSDMarkwort.Kicad.sln --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test src/MSDMarkwort.Kicad.sln --configuration Release --no-build --verbosity normal
+    - name: Packing
+      run: dotnet pack src/MSDMarkwort.Kicad.sln --configuration Release --no-build
+    - name: Publish
+      env:
+           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      run: dotnet nuget push "**/*.nupkg" --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+
+
