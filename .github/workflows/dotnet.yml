@@ -35,3 +35,5 @@ jobs:
       run: dotnet build src/MSDMarkwort.Kicad.sln --configuration Release --no-restore
     - name: Test
       run: dotnet test src/MSDMarkwort.Kicad.sln --configuration Release --no-build --verbosity normal
+    - name: Packing
+      run: dotnet pack src/MSDMarkwort.Kicad.sln --configuration Release --no-build
