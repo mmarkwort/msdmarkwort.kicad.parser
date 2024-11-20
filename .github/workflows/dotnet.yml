@@ -21,8 +21,8 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore src/MSDMarkwort.Kicad.sln
     - name: Build
-      run: dotnet build src/MSDMarkwort.Kicad.sln --configuration Release
+      run: dotnet build src/MSDMarkwort.Kicad.sln --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test src/MSDMarkwort.Kicad.sln --no-build --verbosity normal
