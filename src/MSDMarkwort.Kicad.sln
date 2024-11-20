@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{19F8F184-BA80-452C-B461-4D487FDCBE15}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSDMarkwort.Kicad.Parser.PcbNew.Tests", "Tests\MSDMarkwort.Kicad.Parser.PcbNew.Tests\MSDMarkwort.Kicad.Parser.PcbNew.Tests.csproj", "{28AD89E3-39EF-4D78-AB53-D611D22D884E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSDMarkwort.Kicad.Parser.Base", "MSDMarkwort.Kicad.Parser.Base\MSDMarkwort.Kicad.Parser.Base.csproj", "{2A483C1D-383F-440C-A444-5B6FD17E5565}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSDMarkwort.Kicad.Parser.PcbNew", "MSDMarkwort.Kicad.Parser.PcbNew\MSDMarkwort.Kicad.Parser.PcbNew.csproj", "{E6A0C246-14B6-49F4-906D-8F12AE7D3BB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28AD89E3-39EF-4D78-AB53-D611D22D884E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28AD89E3-39EF-4D78-AB53-D611D22D884E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28AD89E3-39EF-4D78-AB53-D611D22D884E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28AD89E3-39EF-4D78-AB53-D611D22D884E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A483C1D-383F-440C-A444-5B6FD17E5565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A483C1D-383F-440C-A444-5B6FD17E5565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A483C1D-383F-440C-A444-5B6FD17E5565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A483C1D-383F-440C-A444-5B6FD17E5565}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6A0C246-14B6-49F4-906D-8F12AE7D3BB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6A0C246-14B6-49F4-906D-8F12AE7D3BB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6A0C246-14B6-49F4-906D-8F12AE7D3BB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6A0C246-14B6-49F4-906D-8F12AE7D3BB8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{28AD89E3-39EF-4D78-AB53-D611D22D884E} = {19F8F184-BA80-452C-B461-4D487FDCBE15}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {625F21DE-9A73-4420-88E3-04E7C3F83FD4}
+	EndGlobalSection
+EndGlobal
