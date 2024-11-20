@@ -5,7 +5,7 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
   <PropertyGroup>
-    <PackageReadmeFile>../../README.md</PackageReadmeFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <Authors>Manuel Markwort</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/mmarkwort/msdmarkwort.kicad.parser.git</RepositoryUrl> 
