@@ -21,6 +21,8 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Pcb
         protected TypeCache TypeCache { get; }
 
         protected virtual Type[] OverrideTypes => Array.Empty<Type>();
+        
+        protected virtual string[] UnexpectedClosingBracketsIndicators => Array.Empty<string>();
 
         public ParserResult<T> Parse(string filePath)
         {
@@ -40,7 +42,7 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Pcb
             try
             {
                 var expressionParser = new SExpressionParser(input);
-                var rootElement = expressionParser.Parse();
+                var rootElement = expressionParser.Parse(UnexpectedClosingBracketsIndicators);
 
                 instance = Activator.CreateInstance<T>();
                 ApplyElementToModel(instance, rootElement);

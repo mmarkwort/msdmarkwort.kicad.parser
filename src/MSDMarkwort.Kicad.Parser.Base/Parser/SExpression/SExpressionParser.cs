@@ -38,8 +38,12 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.SExpression
             _stream = stream;
         }
 
-        public Element Parse()
+        private string[] _unexpectedClosingBracketsIndicators = Array.Empty<string>();
+
+        public Element Parse(string[] unexpectedClosingBracketsIndicators)
         {
+            _unexpectedClosingBracketsIndicators = unexpectedClosingBracketsIndicators;
+
             _rootElement = new Element();
             _currentElement = _rootElement;
             _mode = Mode.Element;
@@ -61,6 +65,11 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.SExpression
                         }
                     case TokenLibrary.OpenToken:
                         {
+                            if (lineNumber == 348)
+                            {
+
+                            }
+
                             if (_mode == Mode.Element || _mode == Mode.BeforeParameter)
                             {
                                 HandleStartElement(level, lineNumber);
@@ -75,7 +84,7 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.SExpression
                         }
                     case TokenLibrary.CloseToken:
                         {
-                            if (_mode == Mode.Element || _mode == Mode.BeforeParameter)
+                            if (_mode == Mode.Element || _mode == Mode.ElementName || _mode == Mode.BeforeParameter)
                             {
                                 if (HandleCloseElement(level))
                                 {
@@ -237,7 +246,7 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.SExpression
             Back();
 
             if (predictionToken == TokenLibrary.SpaceToken &&
-                _currentElement.ElementName == "extension_offset")
+                _unexpectedClosingBracketsIndicators.Contains(_currentElement.ElementName))
             {
                 _mode = Mode.BeforeParameter;
                 return false;
