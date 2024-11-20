@@ -38,6 +38,7 @@ jobs:
     - name: Packing
       run: dotnet pack src/MSDMarkwort.Kicad.sln --configuration Release --no-build
     - name: Publish
+      if: github.ref == 'refs/heads/master'
       env:
            NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
       run: dotnet nuget push "**/*.nupkg" --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
