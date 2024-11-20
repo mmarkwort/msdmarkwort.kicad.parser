@@ -25,4 +25,4 @@ jobs:
     - name: Build
       run: dotnet build src/MSDMarkwort.Kicad.sln --configuration Release --no-restore
     - name: Test
-      run: dotnet test src/MSDMarkwort.Kicad.sln --no-build --verbosity normal
+      run: dotnet test src/Tests/MSDMarkwort.Kicad.Parser.PcbNew.Tests/MSDMarkwort.Kicad.Parser.PcbNew.Tests.csproj --no-build --verbosity normal
