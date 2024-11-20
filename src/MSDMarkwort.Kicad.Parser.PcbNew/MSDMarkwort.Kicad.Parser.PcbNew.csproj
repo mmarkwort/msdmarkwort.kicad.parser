@@ -14,4 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MSDMarkwort.Kicad.Parser.Base\MSDMarkwort.Kicad.Parser.Base.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md" Link="README.md" />
+  </ItemGroup>
 </Project>

@@ -11,4 +11,7 @@
     <RepositoryUrl>https://github.com/mmarkwort/msdmarkwort.kicad.parser.git</RepositoryUrl> 
     <RepositoryType>git</RepositoryType> 
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md" Link="README.md" />
+  </ItemGroup>
 </Project>
