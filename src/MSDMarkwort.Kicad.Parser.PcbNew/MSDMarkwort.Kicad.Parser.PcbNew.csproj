@@ -9,7 +9,9 @@
     <Authors>Manuel Markwort</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/mmarkwort/msdmarkwort.kicad.parser.git</RepositoryUrl> 
-    <RepositoryType>git</RepositoryType> 
+    <RepositoryType>git</RepositoryType>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSDMarkwort.Kicad.Parser.Base\MSDMarkwort.Kicad.Parser.Base.csproj" />
