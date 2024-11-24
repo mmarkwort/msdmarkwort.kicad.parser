@@ -5,13 +5,13 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartFp
 {
     public class FpRect : FpBase
     {
-        [KicadElement("start")]
+        [KicadParserComplexSymbol("start")]
         public Position StartPosition { get; set; } = new Position();
 
-        [KicadElement("end")]
+        [KicadParserComplexSymbol("end")]
         public Position EndPosition { get; set; } = new Position();
 
-        [KicadElement("fill")]
+        [KicadParserSymbol("fill")]
         public string Fill { get; set; }
 
         public override string ToString()

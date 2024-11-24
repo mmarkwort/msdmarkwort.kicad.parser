@@ -7,22 +7,22 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartZone
         [KicadParameter(0)]
         public bool FillArea { get; set; }
 
-        [KicadElement("thermal_gap")]
+        [KicadParserSymbol("thermal_gap")]
         public double ThermalGap { get; set; }
 
-        [KicadElement("thermal_bridge_width")]
+        [KicadParserSymbol("thermal_bridge_width")]
         public double ThermalBridgeWidth { get; set; }
 
-        [KicadElement("smoothing")]
+        [KicadParserSymbol("smoothing")]
         public string Smoothing { get; set; }
 
-        [KicadElement("radius")]
+        [KicadParserSymbol("radius")]
         public double Radius { get; set; }
 
-        [KicadElement("island_removal_mode")]
+        [KicadParserSymbol("island_removal_mode")]
         public int IslandRemovalMode { get; set; }
 
-        [KicadElement("island_area_min")]
+        [KicadParserSymbol("island_area_min")]
         public int IslandAreaMin { get; set; }
     }
 }

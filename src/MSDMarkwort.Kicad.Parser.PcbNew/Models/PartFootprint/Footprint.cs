@@ -14,82 +14,82 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint
         [KicadParameter(0)]
         public string Name { get; set; }
 
-        [KicadElement("locked")]
+        [KicadParserSymbol("locked")]
         public bool IsLocked { get; set; }
 
-        [KicadElement("layer")]
+        [KicadParserSymbol("layer")]
         public string Layer { get; set; }
 
-        [KicadElement("uuid")]
+        [KicadParserSymbol("uuid")]
         public Guid Uuid { get; set; }
 
-        [KicadElement("at")]
+        [KicadParserComplexSymbol("at")]
         public PositionAt PositionAt { get; set; } = new PositionAt();
 
-        [KicadElement("descr")]
+        [KicadParserSymbol("descr")]
         public string Description { get; set; }
 
-        [KicadElement("tags")]
+        [KicadParserSymbol("tags")]
         public string Tags { get; set; }
 
-        [KicadElement("property")]
+        [KicadParserList("property", KicadParserListAddType.Complex)]
         public PropertyCollection Properties { get; set; } = new PropertyCollection();
 
-        [KicadElement("path")]
+        [KicadParserSymbol("path")]
         public string Path { get; set; }
 
-        [KicadElement("clearance")]
+        [KicadParserSymbol("clearance")]
         public double Clearance { get; set; }
 
-        [KicadElement("sheetname")]
+        [KicadParserSymbol("sheetname")]
         public string SheetName { get; set; }
 
-        [KicadElement("sheetfile")]
+        [KicadParserSymbol("sheetfile")]
         public string SheetFile { get; set; }
 
-        [KicadElement("solder_paste_margin_ratio")]
+        [KicadParserSymbol("solder_paste_margin_ratio")]
         public double SolderPasteMarginRatio { get; set; }
 
-        [KicadElement("solder_mask_margin")]
+        [KicadParserSymbol("solder_mask_margin")]
         public double SolderMaskMargin { get; set; }
 
-        [KicadElement("solder_paste_margin")]
+        [KicadParserSymbol("solder_paste_margin")]
         public double SolderPasteMargin { get; set; }
 
-        [KicadElement("attr")]
+        [KicadParserSymbol("attr")]
         public string Attr { get; set; }
 
-        [KicadElement("net_tie_pad_groups")]
+        [KicadParserSymbol("net_tie_pad_groups")]
         public string NetTiePadGroups { get; set; }
 
-        [KicadElement("fp_line")]
+        [KicadParserList("fp_line", KicadParserListAddType.Complex)]
         public FpCollection<FpLine> FpLines { get; set; } = new FpCollection<FpLine>();
 
-        [KicadElement("fp_rect")]
+        [KicadParserList("fp_rect", KicadParserListAddType.Complex)]
         public FpCollection<FpRect> FpRects { get; set; } = new FpCollection<FpRect>();
 
-        [KicadElement("fp_circle")]
+        [KicadParserList("fp_circle", KicadParserListAddType.Complex)]
         public FpCollection<FpCircle> FpCircles { get; set; } = new FpCollection<FpCircle>();
 
-        [KicadElement("fp_arc")]
+        [KicadParserList("fp_arc", KicadParserListAddType.Complex)]
         public FpCollection<FpArc> FpArcs { get; set; } = new FpCollection<FpArc>();
 
-        [KicadElement("fp_poly")]
+        [KicadParserList("fp_poly", KicadParserListAddType.Complex)]
         public FpCollection<FpPoly> FpPolys { get; set; } = new FpCollection<FpPoly>();
 
-        [KicadElement("fp_text")]
+        [KicadParserList("fp_text", KicadParserListAddType.Complex)]
         public FpCollection<FpText> FpTexts { get; set; } = new FpCollection<FpText>();
 
-        [KicadElement("pad")]
+        [KicadParserList("pad", KicadParserListAddType.Complex)]
         public PadCollection Pads { get; set; } = new PadCollection();
 
-        [KicadElement("embedded_fonts")]
+        [KicadParserSymbol("embedded_fonts")]
         public bool EmbeddedFonts { get; set; }
 
-        [KicadElement("model")]
+        [KicadParserComplexSymbol("model")]
         public Model Model { get; set; } = new Model();
 
-        [KicadElement("group")]
+        [KicadParserList("group", KicadParserListAddType.Complex)]
         public GroupCollection Groups { get; set; } = new GroupCollection();
 
         public override string ToString()

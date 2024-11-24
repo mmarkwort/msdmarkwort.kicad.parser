@@ -4,10 +4,10 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb
 {
     public class General
     {
-        [KicadElement("thickness")]
+        [KicadParserSymbol("thickness")]
         public double Thickness { get; set; }
 
-        [KicadElement("legacy_teardrops")]
+        [KicadParserSymbol("legacy_teardrops")]
         public bool LegacyTearDrops { get; set; }
     }
 }

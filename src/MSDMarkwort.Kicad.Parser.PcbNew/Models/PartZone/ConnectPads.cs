@@ -7,7 +7,7 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartZone
         [KicadParameter(0)]
         public bool Connect { get; set; }
 
-        [KicadElement("clearance")]
+        [KicadParserSymbol("clearance")]
         public double Clearance { get; set; }
     }
 }

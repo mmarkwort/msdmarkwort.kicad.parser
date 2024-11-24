@@ -7,28 +7,28 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartDimension
 {
     public class Dimension : IPts
     {
-        [KicadElement("type")]
+        [KicadParserSymbol("type")]
         public string Type { get; set; }
 
-        [KicadElement("layer")]
+        [KicadParserSymbol("layer")]
         public string Layer { get; set; }
 
-        [KicadElement("uuid")]
+        [KicadParserSymbol("uuid")]
         public Guid Uuid { get; set; }
 
-        [KicadElement("pts")]
+        [KicadParserComplexSymbol("pts")]
         public MultiPointPositionXY Pts { get; set; } = new MultiPointPositionXY();
 
-        [KicadElement("height")]
+        [KicadParserSymbol("height")]
         public double Height { get; set; }
 
-        [KicadElement("gr_text")]
+        [KicadParserComplexSymbol("gr_text")]
         public GrText GrText { get; set; } = new GrText();
 
-        [KicadElement("format")]
+        [KicadParserComplexSymbol("format")]
         public Format Format { get; set; } = new Format();
 
-        [KicadElement("style")]
+        [KicadParserComplexSymbol("style")]
         public Style Style { get; set; } = new Style();
     }
 }

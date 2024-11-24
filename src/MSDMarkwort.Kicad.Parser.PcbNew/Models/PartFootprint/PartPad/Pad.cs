@@ -17,67 +17,67 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartPad
         [KicadParameter(2)]
         public string Shape { get; set; }
 
-        [KicadElement("at")]
+        [KicadParserComplexSymbol("at")]
         public PositionAt PositionAt { get; set; } = new PositionAt();
 
-        [KicadElement("size")]
+        [KicadParserComplexSymbol("size")]
         public Size Size { get; set; } = new Size();
 
-        [KicadElement("rect_delta")]
+        [KicadParserComplexSymbol("rect_delta")]
         public Size RectDelta { get; set; } = new Size();
 
-        [KicadElement("drill")]
+        [KicadParserComplexSymbol("drill")]
         public Drill Drill { get; set; } = new Drill();
 
-        [KicadElement("layers")]
+        [KicadParserSymbol("layers")]
         public List<string> Layers { get; set; } = new List<string>();
 
-        [KicadElement("remove_unused_layers")]
+        [KicadParserSymbol("remove_unused_layers")]
         public bool RemoveUnusedLayers { get; set; }
 
-        [KicadElement("roundrect_rratio")]
+        [KicadParserSymbol("roundrect_rratio")]
         public double RoundRectRatio { get; set; }
 
-        [KicadElement("net")]
+        [KicadParserComplexSymbol("net")]
         public Net Net { get; set; } = new Net();
 
-        [KicadElement("pintype")]
+        [KicadParserSymbol("pintype")]
         public string PinType { get; set; }
 
-        [KicadElement("pinfunction")]
+        [KicadParserSymbol("pinfunction")]
         public string PinFunction { get; set; }
 
-        [KicadElement("solder_paste_margin_ratio")]
+        [KicadParserSymbol("solder_paste_margin_ratio")]
         public double SolderPasteMarginRatio { get; set; }
 
-        [KicadElement("zone_connect")]
+        [KicadParserSymbol("zone_connect")]
         public int ZoneConnect { get; set; }
 
-        [KicadElement("thermal_bridge_width")]
+        [KicadParserSymbol("thermal_bridge_width")]
         public double ThermalBridgeWidth { get; set; }
 
-        [KicadElement("thermal_gap")]
+        [KicadParserSymbol("thermal_gap")]
         public double ThermalGap { get; set; }
 
-        [KicadElement("thermal_bridge_angle")]
+        [KicadParserSymbol("thermal_bridge_angle")]
         public double ThermalBridgeAngle { get; set; }
 
-        [KicadElement("options")]
+        [KicadParserComplexSymbol("options")]
         public Options Options { get; set; } = new Options();
 
-        [KicadElement("primitives")]
+        [KicadParserComplexSymbol("primitives")]
         public Primitives Primitives { get; set; } = new Primitives();
 
-        [KicadElement("solder_mask_margin")]
+        [KicadParserSymbol("solder_mask_margin")]
         public double SolderMaskMargin { get; set; }
 
-        [KicadElement("clearance")]
+        [KicadParserSymbol("clearance")]
         public double Clearance { get; set; }
 
-        [KicadElement("uuid")]
+        [KicadParserSymbol("uuid")]
         public Guid Uuid { get; set; }
 
-        [KicadElement("teardrops")]
+        [KicadParserComplexSymbol("teardrops")]
         public Teardrops Teardrops { get; set; } = new Teardrops();
     }
 }

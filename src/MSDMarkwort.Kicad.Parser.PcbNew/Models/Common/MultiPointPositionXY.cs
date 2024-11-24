@@ -5,7 +5,7 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
 {
     public class MultiPointPositionXY
     {
-        [KicadElement("xy")]
+        [KicadParserList("xy", KicadParserListAddType.Complex)]
         public List<Position> Positions { get; set; } = new List<Position>();
     }
 }

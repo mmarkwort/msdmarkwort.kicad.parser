@@ -8,13 +8,13 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr
         [KicadParameter(0)]
         public string Text { get; set; }
 
-        [KicadElement("at")]
+        [KicadParserComplexSymbol("at")]
         public PositionAt Position { get; set; } = new PositionAt();
 
-        [KicadElement("effects")]
+        [KicadParserComplexSymbol("effects")]
         public Effects Effects { get; set; } = new Effects();
 
-        [KicadElement("render_cache")]
+        [KicadParserComplexSymbol("render_cache")]
         public RenderCache RenderCache { get; set; } = new RenderCache();
 
         public override string ToString()

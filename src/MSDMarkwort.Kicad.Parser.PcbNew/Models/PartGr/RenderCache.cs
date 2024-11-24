@@ -7,7 +7,7 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr
         [KicadParameter(0)]
         public string Text { get; set; }
 
-        [KicadElement("polygon")]
+        [KicadParserSymbol("polygon")]
         public PolygonCollection Polygons { get; set; } = new PolygonCollection();
     }
 }

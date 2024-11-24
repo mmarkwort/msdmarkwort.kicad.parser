@@ -12,73 +12,73 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb
 {
     public class KicadPcb
     {
-        [KicadElement("version")]
+        [KicadParserSymbol("version")]
         public int Version { get; set; }
 
-        [KicadElement("generator")]
+        [KicadParserSymbol("generator")]
         public string Generator { get; set; }
 
-        [KicadElement("generator_version")]
+        [KicadParserSymbol("generator_version")]
         public string GeneratorVersion { get; set; }
 
-        [KicadElement("general")]
+        [KicadParserComplexSymbol("general")]
         public General General { get; set; } = new General();
 
-        [KicadElement("paper")]
+        [KicadParserSymbol("paper")]
         public string PaperSize { get; set; }
 
-        [KicadElement("title_block")]
+        [KicadParserComplexSymbol("title_block")]
         public TitleBlock TitleBlock { get; set; } = new TitleBlock();
 
-        [KicadElement("layers")]
-        public BoardLayerCollection Layers { get; set; } = new BoardLayerCollection();
+        [KicadParserComplexSymbol("layers")]
+        public BoardLayers Layers { get; set; } = new BoardLayers();
 
-        [KicadElement("setup")]
+        [KicadParserComplexSymbol("setup")]
         public Setup Setup { get; set; } = new Setup();
 
-        [KicadElement("net")]
+        [KicadParserList("net", KicadParserListAddType.Complex)]
         public NetCollection Nets { get; set; } = new NetCollection();
 
-        [KicadElement("footprint")]
+        [KicadParserList("footprint", KicadParserListAddType.Complex)]
         public FootprintCollection Footprints { get; set; } = new FootprintCollection();
 
-        [KicadElement("gr_line")]
+        [KicadParserList("gr_line", KicadParserListAddType.Complex)]
         public GrCollection<GrLine> GrLines { get; set; } = new GrCollection<GrLine>();
 
-        [KicadElement("gr_rect")]
+        [KicadParserList("gr_rect", KicadParserListAddType.Complex)]
         public GrCollection<GrRect> GrRects { get; set; } = new GrCollection<GrRect>();
 
-        [KicadElement("gr_poly")]
+        [KicadParserList("gr_poly", KicadParserListAddType.Complex)]
         public GrCollection<GrPoly> GrPolys { get; set; } = new GrCollection<GrPoly>();
 
-        [KicadElement("gr_text")]
+        [KicadParserList("gr_text", KicadParserListAddType.Complex)]
         public GrCollection<GrText> GrTexts { get; set; } = new GrCollection<GrText>();
 
-        [KicadElement("gr_arc")]
+        [KicadParserList("gr_arc", KicadParserListAddType.Complex)]
         public GrCollection<GrArc> GrArc { get; set; } = new GrCollection<GrArc>();
 
-        [KicadElement("arc")]
+        [KicadParserList("arc", KicadParserListAddType.Complex)]
         public GrCollection<GrArc> Arc { get; set; } = new GrCollection<GrArc>();
 
-        [KicadElement("gr_circle")]
+        [KicadParserList("gr_circle", KicadParserListAddType.Complex)]
         public GrCollection<GrCircle> GrCircle { get; set; } = new GrCollection<GrCircle>();
 
-        [KicadElement("dimension")]
+        [KicadParserList("dimension", KicadParserListAddType.Complex)]
         public DimensionCollection Dimensions { get; set; } = new DimensionCollection();
 
-        [KicadElement("segment")]
+        [KicadParserList("segment", KicadParserListAddType.Complex)]
         public SegmentCollection Segments { get; set; } = new SegmentCollection();
 
-        [KicadElement("via")]
+        [KicadParserList("via", KicadParserListAddType.Complex)]
         public ViaCollection Vias { get; set; } = new ViaCollection();
 
-        [KicadElement("zone")]
+        [KicadParserList("zone", KicadParserListAddType.Complex)]
         public ZoneCollection Zones { get; set; } = new ZoneCollection();
 
-        [KicadElement("embedded_fonts")]
+        [KicadParserSymbol("embedded_fonts")]
         public bool EmbeddedFonts { get; set; }
 
-        [KicadElement("group")]
+        [KicadParserList("group", KicadParserListAddType.Complex)]
         public GroupCollection Groups { get; set; } = new GroupCollection();
     }
 }

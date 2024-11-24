@@ -4,31 +4,31 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartPad
 {
     public class Teardrops
     {
-        [KicadElement("best_length_ratio")]
+        [KicadParserSymbol("best_length_ratio")]
         public double BestLengthRatio { get; set; }
 
-        [KicadElement("max_length")]
+        [KicadParserSymbol("max_length")]
         public double MaxLength { get; set; }
 
-        [KicadElement("best_width_ratio")]
+        [KicadParserSymbol("best_width_ratio")]
         public double BestWidthRatio { get; set; }
 
-        [KicadElement("max_width")]
+        [KicadParserSymbol("max_width")]
         public double MaxWidth { get; set; }
 
-        [KicadElement("curve_points")]
+        [KicadParserSymbol("curve_points")]
         public double CurvePoints { get; set; }
 
-        [KicadElement("filter_ratio")]
+        [KicadParserSymbol("filter_ratio")]
         public double FilterRatio { get; set; }
 
-        [KicadElement("enabled")]
+        [KicadParserSymbol("enabled")]
         public bool Enabled { get; set; }
 
-        [KicadElement("allow_two_segments")]
+        [KicadParserSymbol("allow_two_segments")]
         public bool AllowTwoSegments { get; set; }
 
-        [KicadElement("prefer_zone_connections")]
+        [KicadParserSymbol("prefer_zone_connections")]
         public bool PreferZoneConnections { get; set; }
     }
 }

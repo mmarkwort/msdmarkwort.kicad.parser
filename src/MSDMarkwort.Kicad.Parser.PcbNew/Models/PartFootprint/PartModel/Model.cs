@@ -5,16 +5,19 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartModel
 {
     public class Model
     {
-        [KicadElement("hide")]
+        [KicadParameter(0)]
+        public string Name { get; set; }
+
+        [KicadParserSymbol("hide")]
         public bool Hide { get; set; }
 
-        [KicadElement("offset")]
+        [KicadParserComplexSymbol("offset")]
         public PositionXYZProxy Offset { get; set; } = new PositionXYZProxy();
 
-        [KicadElement("scale")]
+        [KicadParserComplexSymbol("scale")]
         public PositionXYZProxy Scale { get; set; } = new PositionXYZProxy();
 
-        [KicadElement("rotate")]
+        [KicadParserComplexSymbol("rotate")]
         public PositionXYZProxy Rotate { get; set; } = new PositionXYZProxy();
     }
 }

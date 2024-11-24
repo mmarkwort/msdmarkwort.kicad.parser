@@ -5,10 +5,10 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartZone
 {
     public class FilledPolygon : IPts
     {
-        [KicadElement("layer")]
+        [KicadParserSymbol("layer")]
         public string Layer { get; set; }
 
-        [KicadElement("pts")]
+        [KicadParserComplexSymbol("pts")]
         public MultiPointPositionXY Pts { get; set; } = new MultiPointPositionXY();
     }
 }

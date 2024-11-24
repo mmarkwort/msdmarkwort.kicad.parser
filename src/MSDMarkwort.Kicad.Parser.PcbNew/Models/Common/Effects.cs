@@ -4,10 +4,10 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
 {
     public class Effects
     {
-        [KicadElement("font")]
+        [KicadParserComplexSymbol("font")]
         public Font Font { get; set; } = new Font();
 
-        [KicadElement("justify")]
+        [KicadParserComplexSymbol("justify")]
         public Justify Justify { get; set; } = new Justify();
     }
 }

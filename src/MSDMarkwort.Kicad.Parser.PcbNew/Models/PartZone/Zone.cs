@@ -7,55 +7,55 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartZone
 {
     public class Zone
     {
-        [KicadElement("layer")]
+        [KicadParserSymbol("layer")]
         public string Layer { get; set; }
 
-        [KicadElement("layers")]
+        [KicadParserList("layers", KicadParserListAddType.FromParameters)]
         public List<string> Layers { get; set; } = new List<string>();
 
-        [KicadElement("net")]
+        [KicadParserSymbol("net")]
         public int Net { get; set; } = -1;
 
-        [KicadElement("net_name")]
+        [KicadParserSymbol("net_name")]
         public string NetName { get; set; }
 
-        [KicadElement("uuid")]
+        [KicadParserSymbol("uuid")]
         public Guid Uuid { get; set; }
 
-        [KicadElement("name")]
+        [KicadParserSymbol("name")]
         public string Name { get; set; }
 
-        [KicadElement("hatch")]
+        [KicadParserComplexSymbol("hatch")]
         public Hatch Hatch { get; set; } = new Hatch();
 
-        [KicadElement("priority")]
+        [KicadParserSymbol("priority")]
         public int Priority { get; set; }
 
-        [KicadElement("attr")]
+        [KicadParserComplexSymbol("attr")]
         public Attr Attr { get; set; } = new Attr();
 
-        [KicadElement("connect_pads")]
+        [KicadParserComplexSymbol("connect_pads")]
         public ConnectPads ConnectPads { get; set; } = new ConnectPads();
 
-        [KicadElement("min_thickness")]
+        [KicadParserSymbol("min_thickness")]
         public double MinThickness { get; set; }
 
-        [KicadElement("filled_areas_thickness")]
+        [KicadParserSymbol("filled_areas_thickness")]
         public bool FilledAreasThickness { get; set; }
 
-        [KicadElement("keepout")]
+        [KicadParserComplexSymbol("keepout")]
         public Keepout Keepout { get; set; } = new Keepout();
 
-        [KicadElement("placement")]
+        [KicadParserComplexSymbol("placement")]
         public Placement Placement { get; set; } = new Placement();
 
-        [KicadElement("fill")]
+        [KicadParserComplexSymbol("fill")]
         public Fill Fill { get; set; } = new Fill();
 
-        [KicadElement("polygon")]
+        [KicadParserComplexSymbol("polygon")]
         public Polygon Polygon { get; set; } = new Polygon();
 
-        [KicadElement("filled_polygon")]
+        [KicadParserComplexSymbol("filled_polygon")]
         public FilledPolygon FilledPolygon { get; set; } = new FilledPolygon();
     }
 }

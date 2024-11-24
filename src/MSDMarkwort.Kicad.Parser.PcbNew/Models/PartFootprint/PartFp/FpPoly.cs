@@ -5,10 +5,10 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartFp
 {
     public class FpPoly : FpBase, IPts
     {
-        [KicadElement("pts")]
+        [KicadParserComplexSymbol("pts")]
         public MultiPointPositionXY Pts { get; set; } = new MultiPointPositionXY();
 
-        [KicadElement("fill")]
+        [KicadParserSymbol("fill")]
         public string Fill { get; set; }
     }
 }

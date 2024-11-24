@@ -5,19 +5,19 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb
 {
     public class TitleBlock
     {
-        [KicadElement("title")]
+        [KicadParserSymbol("title")]
         public string Title { get; set; }
 
-        [KicadElement("date")]
+        [KicadParserSymbol("date")]
         public string Date { get; set; }
 
-        [KicadElement("rev")]
+        [KicadParserSymbol("rev")]
         public string Revision { get; set; }
 
-        [KicadElement("company")]
+        [KicadParserSymbol("company")]
         public string Company { get; set; }
 
-        [KicadElement("comment")]
-        public List<string> Comments { get; set; } = new List<string>();
+        [KicadParserList("comment", KicadParserListAddType.Complex)]
+        public List<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

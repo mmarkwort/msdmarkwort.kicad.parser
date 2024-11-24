@@ -5,10 +5,10 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr
 {
     public class GrRect : GrBase
     {
-        [KicadElement("start")]
+        [KicadParserComplexSymbol("start")]
         public Position StartPosition { get; set; } = new Position();
 
-        [KicadElement("end")]
+        [KicadParserComplexSymbol("end")]
         public Position EndPosition { get; set; } = new Position();
 
         public override string ToString()

@@ -4,7 +4,7 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
 {
     public class PositionXYZProxy
     {
-        [KicadElement("xyz")]
+        [KicadParserComplexSymbol("xyz")]
         public PositionXYZ PositionXYZ { get; set; } = new PositionXYZ();
     }
 }

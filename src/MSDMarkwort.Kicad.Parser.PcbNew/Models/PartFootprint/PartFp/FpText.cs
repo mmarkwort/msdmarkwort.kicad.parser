@@ -12,19 +12,19 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartFp
         [KicadParameter(1)]
         public string Text { get; set; }
 
-        [KicadElement("at")]
+        [KicadParserComplexSymbol("at")]
         public PositionAt PositionAt { get; set; } = new PositionAt();
 
-        [KicadElement("hide")]
+        [KicadParserSymbol("hide")]
         public bool Hide { get; set; }
 
-        [KicadElement("unlocked")]
+        [KicadParserSymbol("unlocked")]
         public bool Unlocked { get; set; }
 
-        [KicadElement("effects")]
+        [KicadParserComplexSymbol("effects")]
         public Effects Effects { get; set; } = new Effects();
 
-        [KicadElement("render_cache")]
+        [KicadParserComplexSymbol("render_cache")]
         public RenderCache RenderCache { get; set; } = new RenderCache();
 
         public override string ToString()

@@ -4,19 +4,19 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartZone
 {
     public class Keepout
     {
-        [KicadElement("tracks")]
+        [KicadParserSymbol("tracks")]
         public string Tracks { get; set; }
 
-        [KicadElement("vias")]
+        [KicadParserSymbol("vias")]
         public string Vias { get; set; }
 
-        [KicadElement("pads")]
+        [KicadParserSymbol("pads")]
         public string Pads { get; set; }
 
-        [KicadElement("copperpour")]
+        [KicadParserSymbol("copperpour")]
         public string CopperPour { get; set; }
 
-        [KicadElement("footprints")]
+        [KicadParserSymbol("footprints")]
         public string Footprints { get; set; }
     }
 }

@@ -6,25 +6,25 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartSegment
 {
     public class Segment
     {
-        [KicadElement("start")]
+        [KicadParserSymbol("start")]
         public Position StartPosition { get; set; } = new Position();
 
-        [KicadElement("end")]
+        [KicadParserSymbol("end")]
         public Position EndPosition { get; set; } = new Position();
 
-        [KicadElement("width")]
+        [KicadParserSymbol("width")]
         public double Width { get; set; }
 
-        [KicadElement("locked")]
+        [KicadParserSymbol("locked")]
         public bool Locked { get; set; }
 
-        [KicadElement("layer")]
+        [KicadParserSymbol("layer")]
         public string Layer { get; set; }
 
-        [KicadElement("net")]
+        [KicadParserSymbol("net")]
         public int Net { get; set; } = -1;
 
-        [KicadElement("uuid")]
+        [KicadParserSymbol("uuid")]
         public Guid Uuid { get; set; }
     }
 }

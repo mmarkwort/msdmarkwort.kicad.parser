@@ -4,16 +4,16 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
 {
     public class Font
     {
-        [KicadElement("face")]
+        [KicadParserSymbol("face")]
         public string FontFace { get; set; }
 
-        [KicadElement("size")]
+        [KicadParserComplexSymbol("size")]
         public Size Size { get; set; } = new Size();
 
-        [KicadElement("thickness")]
+        [KicadParserSymbol("thickness")]
         public double Thickness { get; set; }
 
-        [KicadElement("bold")]
+        [KicadParserSymbol("bold")]
         public bool Bold { get; set; }
     }
 }

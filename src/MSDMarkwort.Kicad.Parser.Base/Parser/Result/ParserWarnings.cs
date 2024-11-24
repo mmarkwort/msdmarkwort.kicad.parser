@@ -3,10 +3,11 @@
     public enum ParserWarnings
     {
         NoWarning,
-        ParameterNotFound,
+        SymbolNotFound,
         UnknownSetter,
         NoParameterForParameterNumberFound,
         ParameterSetFailed,
+        ListTypeNotSupported,
         MaybeUnsupportedFileVersion
     }
 }

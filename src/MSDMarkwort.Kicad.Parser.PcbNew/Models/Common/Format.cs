@@ -4,19 +4,19 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
 {
     public class Format
     {
-        [KicadElement("prefix")]
+        [KicadParserSymbol("prefix")]
         public string Prefix { get; set; }
 
-        [KicadElement("suffix")]
+        [KicadParserSymbol("suffix")]
         public string Suffix { get; set; }
 
-        [KicadElement("units")]
+        [KicadParserSymbol("units")]
         public int Units { get; set; }
 
-        [KicadElement("units_format")]
+        [KicadParserSymbol("units_format")]
         public int UnitsFormat { get; set; }
 
-        [KicadElement("precision")]
+        [KicadParserSymbol("precision")]
         public int Precision { get; set; }
     }
 }

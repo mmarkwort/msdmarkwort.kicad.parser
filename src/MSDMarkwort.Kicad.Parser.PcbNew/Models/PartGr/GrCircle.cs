@@ -5,13 +5,13 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr
 {
     public class GrCircle : GrBase
     {
-        [KicadElement("center")]
+        [KicadParserComplexSymbol("center")]
         public Position CenterPosition { get; set; } = new Position();
 
-        [KicadElement("end")]
+        [KicadParserComplexSymbol("end")]
         public Position EndPosition { get; set; } = new Position();
 
-        [KicadElement("width")]
+        [KicadParserSymbol("width")]
         public double Width { get; set; }
 
         public override string ToString()

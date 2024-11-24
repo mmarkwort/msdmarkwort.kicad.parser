@@ -5,10 +5,10 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartFp
 {
     public class FpLine : FpBase
     {
-        [KicadElement("start")]
+        [KicadParserComplexSymbol("start")]
         public Position StartPosition { get; set; } = new Position();
 
-        [KicadElement("end")]
+        [KicadParserComplexSymbol("end")]
         public Position EndPosition { get; set; } = new Position();
 
         public override string ToString()

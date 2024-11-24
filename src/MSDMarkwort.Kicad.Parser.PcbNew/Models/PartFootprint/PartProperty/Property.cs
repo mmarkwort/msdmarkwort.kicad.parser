@@ -12,22 +12,22 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartProperty
         [KicadParameter(1)]
         public string Value { get; set; }
 
-        [KicadElement("uuid")]
+        [KicadParserSymbol("uuid")]
         public Guid Uuid { get; set; }
 
-        [KicadElement("at")]
+        [KicadParserComplexSymbol("at")]
         public PositionAt PositionAt { get; set; } = new PositionAt();
 
-        [KicadElement("layer")]
+        [KicadParserSymbol("layer")]
         public string Layer { get; set; }
 
-        [KicadElement("hide")]
+        [KicadParserSymbol("hide")]
         public bool Hide { get; set; }
 
-        [KicadElement("unlocked")]
+        [KicadParserSymbol("unlocked")]
         public bool Unlocked { get; set; }
 
-        [KicadElement("effects")]
+        [KicadParserComplexSymbol("effects")]
         public Effects Effects { get; set; } = new Effects();
 
         public override string ToString()

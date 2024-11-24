@@ -5,10 +5,10 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr
 {
     public class GrPoly : GrBase, IPts
     {
-        [KicadElement("pts")]
+        [KicadParserComplexSymbol("pts")]
         public MultiPointPositionXY Pts { get; set; } = new MultiPointPositionXY();
 
-        [KicadElement("width")]
+        [KicadParserSymbol("width")]
         public double Width { get; set; }
     }
 }

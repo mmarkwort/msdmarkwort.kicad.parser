@@ -1,7 +1,6 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Parser.Pcb;
 using MSDMarkwort.Kicad.Parser.Base.Parser.Reflection;
 using MSDMarkwort.Kicad.Parser.Base.Parser.Result;
-using MSDMarkwort.Kicad.Parser.Base.Parser.SExpression;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartPad;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartLayers;
@@ -9,10 +8,18 @@ using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartSetup;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using MSDMarkwort.Kicad.Parser.Base.Attributes;
+using MSDMarkwort.Kicad.Parser.Base.Parser.SExpression.Models;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew
 {
-    public class PcbNewParser : BaseParser<KicadPcb>
+    public class PcbParserRootModel : KicadRootModel<KicadPcb>
+    {
+        [KicadParserComplexSymbol("kicad_pcb")]
+        public override KicadPcb Root { get; set; } = new KicadPcb();
+    }
+
+    public class PcbNewParser : KicadBaseParser<KicadPcb, PcbParserRootModel>
     {
         private static readonly TypeCache StaticTypeCache = new TypeCache();
 
@@ -54,12 +61,13 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew
             return true;
         }
 
-        protected override bool HandleOverrideType(Type overrideType, object model, Element element)
+        protected override int HandleOverrideType(Type overrideType, object model, List<SExpr> containingList, int idxInList, SExprSymbol symbol, out object overrideModel, out Type overrideModelType)
         {
-            if (model.GetType() == typeof(BoardLayerCollection))
+            if (model.GetType() == typeof(BoardLayers))
             {
-                HandleBoardLayerCollection(model as BoardLayerCollection, element.Children);
+                return HandleBoardLayers(model as BoardLayers, symbol, idxInList, out overrideModel, out overrideModelType);
             }
+            /*
             else if (model.GetType() == typeof(Drill))
             {
                 HandleDrill(model as Drill, element);
@@ -68,10 +76,25 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew
             {
                 HandleTenting(model as Tenting, element);
             }
+            */
 
-            return true;
+            return base.HandleOverrideType(overrideType, model, containingList, idxInList, symbol, out overrideModel, out overrideModelType);
         }
 
+        private int HandleBoardLayers(BoardLayers boardLayers, SExprSymbol symbol, int idxInList, out object overrideModel, out Type overrideModelType)
+        {
+            var newLayer = new BoardLayer { Number = int.Parse(symbol.Value) };
+
+            overrideModel = newLayer;
+            overrideModelType = newLayer.GetType();
+            symbol.Value = "layers";
+
+            boardLayers.Layers.Add(newLayer);
+
+            return idxInList;
+        }
+
+        /*
         private void HandleBoardLayerCollection(BoardLayerCollection boardLayerCollection, List<Element> layerElements)
         {
             foreach (var layerElement in layerElements)
@@ -149,5 +172,6 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew
                 }
             }
         }
+        */
     }
 }

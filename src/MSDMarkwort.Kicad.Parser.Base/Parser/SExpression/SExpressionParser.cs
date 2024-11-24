@@ -1,270 +1,160 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using MSDMarkwort.Kicad.Parser.Base.Parser.SExpression.Models;
 
 namespace MSDMarkwort.Kicad.Parser.Base.Parser.SExpression
 {
     internal class SExpressionParser
     {
-        private readonly Stream _stream;
-        private Mode _mode;
-
-        private Element _rootElement;
-        private Element _currentElement;
-
-        private enum Mode
-        {
-            Element,
-            ElementName,
-            BeforeParameter,
-            InParameter,
-            InParameterInDoubleQuotationMarks
-        }
+        private Stream _stream;
+        private int _lineNumber;
+        private char _token;
 
         private static class TokenLibrary
         {
             public const char OpenToken = '(';
             public const char CloseToken = ')';
             public const char DoubleQuotesToken = '"';
-            public const char SpaceToken = ' ';
-            public const char TabToken = '\t';
             public const char NewlineToken = '\n';
-            public const char CarriageReturnToken = '\r';
             public const char BackslashToken = '\\';
+            public static readonly char[] WhitespaceCharacters = { ' ', '\t', '\n', '\r', '\b', '\f', '\v'};
+            public static readonly char[] WhitespaceCharactersWithBrackets = { ' ', '\t', '\n', '\r', '\b', '\f', '\v', OpenToken, CloseToken };
         }
 
-        public SExpressionParser(Stream stream)
+        public SExpr ParseStream(Stream stream)
         {
             _stream = stream;
+            _lineNumber = 1;
+
+            return Parse();
         }
 
-        private string[] _unexpectedClosingBracketsIndicators = Array.Empty<string>();
-
-        public Element Parse(string[] unexpectedClosingBracketsIndicators)
+        public SExpr Parse()
         {
-            _unexpectedClosingBracketsIndicators = unexpectedClosingBracketsIndicators;
-
-            _rootElement = new Element();
-            _currentElement = _rootElement;
-            _mode = Mode.Element;
-
-            var level = 0;
-            var lineNumber = 1;
-            var characterInLine = 0;
-
-            while (Advance(out var currentToken))
+            while (Advance(out _token))
             {
-                ++characterInLine;
-
-                switch (currentToken)
+                if (_token == TokenLibrary.NewlineToken)
                 {
-                    case TokenLibrary.TabToken:
-                        {
-                            ++level;
-                            break;
-                        }
+                    ++_lineNumber;
+                }
+
+                if (TokenLibrary.WhitespaceCharacters.Contains(_token))
+                {
+                    continue;
+                }
+
+                switch (_token)
+                {
                     case TokenLibrary.OpenToken:
+                    {
+                        Advance(out _token);
+
+                        var sexprList = new SExprList { LineNumber = _lineNumber };
+
+                        while (Peek() && _token != TokenLibrary.CloseToken)
                         {
-                            if (lineNumber == 348)
+                            if (_token == TokenLibrary.NewlineToken)
                             {
-
+                                ++_lineNumber;
                             }
 
-                            if (_mode == Mode.Element || _mode == Mode.BeforeParameter)
+                            if (TokenLibrary.WhitespaceCharacters.Contains(_token))
                             {
-                                HandleStartElement(level, lineNumber);
-                                _mode = Mode.ElementName;
-                            }
-                            else
-                            {
-                                AppendTokenToLastParameter(currentToken);
+                                Advance(out _token);
+                                continue;
                             }
 
-                            break;
+                            Back();
+
+                            var child = Parse();
+                            sexprList.Children.Add(child);
                         }
-                    case TokenLibrary.CloseToken:
+
+                        if (Peek())
                         {
-                            if (_mode == Mode.Element || _mode == Mode.ElementName || _mode == Mode.BeforeParameter)
+                            Advance(out _token);
+                        }
+
+                        return sexprList;
+                    }
+                    case TokenLibrary.CloseToken:
+                    {
+                        return null;
+                    }
+                    case TokenLibrary.DoubleQuotesToken:
+                    {
+                        var sexprString = new SExprString
+                        {
+                            LineNumber = _lineNumber
+                        };
+
+                        while (Advance(out _token))
+                        {
+                            if (_token == TokenLibrary.BackslashToken)
                             {
-                                if (HandleCloseElement(level))
+                                sexprString.Value += _token;
+
+                                if (!Advance(out _token))
                                 {
-                                    _mode = Mode.Element;
+                                    break;
                                 }
                             }
-                            else
+
+                            if (_token == TokenLibrary.DoubleQuotesToken)
                             {
-                                AppendTokenToLastParameter(currentToken);
+                                break;
                             }
 
-                            break;
+                            sexprString.Value += _token;
                         }
-                    case TokenLibrary.SpaceToken:
+
+                        if (!Peek())
                         {
-                            if (_mode == Mode.ElementName)
-                            {
-                                HandleNewParameter();
-
-                                _mode = Mode.BeforeParameter;
-                            }
-                            else if (_mode == Mode.BeforeParameter)
-                            {
-                                HandleNewParameter();
-                            }
-                            else if (_mode == Mode.InParameter ||
-                                    _mode == Mode.InParameterInDoubleQuotationMarks)
-                            {
-                                AppendTokenToLastParameter(currentToken);
-                            }
-                            break;
+                            throw new InvalidOperationException("No closing quote found");
                         }
-                    case TokenLibrary.DoubleQuotesToken:
-                        {
-                            switch (_mode)
-                            {
-                                case Mode.BeforeParameter:
-                                    {
-                                        _mode = Mode.InParameterInDoubleQuotationMarks;
-                                        break;
-                                    }
-                                case Mode.InParameterInDoubleQuotationMarks:
-                                    {
-                                        _mode = Mode.BeforeParameter;
-                                        break;
-                                    }
-                                default:
-                                    {
-                                        AppendTokenToLastParameter(currentToken);
-                                        break;
-                                    }
-                            }
-                            break;
-                        }
-                    case TokenLibrary.NewlineToken:
-                    case TokenLibrary.CarriageReturnToken:
-                        {
-                            HandleNewline();
 
-                            _mode = Mode.Element;
-                            level = 0;
-                            characterInLine = 0;
-
-                            ++lineNumber;
-                            break;
-                        }
-                    case TokenLibrary.BackslashToken:
-                        {
-                            if (_mode == Mode.InParameter)
-                            {
-                                HandleBackslash();
-                            }
-
-                            break;
-                        }
+                        Advance(out _token);
+                        return sexprString;
+                    }
                     default:
+                    {
+                        PeekTokenBefore(out var tokenBefore);
+
+                        var tmp = string.Empty;
+                        var endReached = false;
+                        while (!TokenLibrary.WhitespaceCharactersWithBrackets.Contains(_token))
                         {
-                            switch (_mode)
+                            tmp += _token;
+
+                            if (!Advance(out _token)) 
                             {
-                                case Mode.ElementName:
-                                    {
-                                        AppendTokenToElementName(currentToken);
-                                        break;
-                                    }
-                                case Mode.BeforeParameter:
-                                case Mode.InParameter:
-                                case Mode.InParameterInDoubleQuotationMarks:
-                                    {
-                                        AppendTokenToLastParameter(currentToken);
-                                        break;
-                                    }
+                                endReached = true;
+                                break;
+                            }
+                        }
+
+                        if (!endReached)
+                        {
+                            if (tokenBefore == TokenLibrary.OpenToken)
+                            {
+                                return new SExprSymbol { LineNumber = _lineNumber, Value = tmp };
                             }
 
-                            break;
+                            return new SExprString { LineNumber = _lineNumber, Value = tmp };
                         }
+
+                        throw new InvalidOperationException("Format error");
+                    }
                 }
             }
 
-            return _rootElement.Children.FirstOrDefault();
-        }
-
-        private void HandleStartElement(int level, int lineNumber)
-        {
-            var newElement = new Element { ParentElement = _currentElement, Level = level, LineNumber = lineNumber };
-
-            _currentElement.Children.Add(newElement);
-            _currentElement = newElement;
-        }
-
-        private void AppendTokenToElementName(char token)
-        {
-            _currentElement.ElementName += token;
-        }
-
-        private void HandleNewParameter()
-        {
-            _currentElement.Parameters.Add("");
-        }
-
-        private void AppendTokenToLastParameter(char token)
-        {
-            _currentElement.Parameters[^1] += token;
-        }
-
-        private void HandleNewline()
-        {
-            if (Advance(out var predictionToken))
-            {
-                if (predictionToken != TokenLibrary.NewlineToken &&
-                    predictionToken != TokenLibrary.CarriageReturnToken)
-                {
-                    Back();
-                }
-            }
-        }
-
-        private void HandleBackslash()
-        {
-            if (Advance(out var predictionToken))
-            {
-                if (predictionToken == TokenLibrary.DoubleQuotesToken)
-                {
-                    AppendTokenToLastParameter(predictionToken);
-                }
-                else
-                {
-                    Back();
-                }
-            }
-        }
-
-        private bool HandleCloseElement(int level)
-        {
-            if (!Advance(out var predictionToken))
-            {
-                return false;
-            }
-
-            Back();
-
-            if (predictionToken == TokenLibrary.SpaceToken &&
-                _unexpectedClosingBracketsIndicators.Contains(_currentElement.ElementName))
-            {
-                _mode = Mode.BeforeParameter;
-                return false;
-            }
-
-            var levelDiff = Math.Abs(level - _currentElement.Level);
-
-            for (; !(levelDiff < 0); --levelDiff)
-            {
-                _currentElement = _currentElement.ParentElement;
-            }
-
-            return true;
+            return null;
         }
 
         private bool Advance(out char token)
         {
-            int readToken = _stream.ReadByte();
+            var readToken = _stream.ReadByte();
             if (readToken == -1)
             {
                 token = '\0';
@@ -275,9 +165,53 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.SExpression
             return true;
         }
 
-        private void Back()
+        private bool Peek()
         {
-            _stream.Seek(-1, SeekOrigin.Current);
+            var peekToken = _stream.ReadByte();
+            Back();
+
+            if (peekToken == -1)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool PeekTokenBefore(out char peekTokenBefore)
+        {
+            peekTokenBefore = '\0';
+
+            if (!Back(-2))
+            {
+                return false;
+            }
+
+            var readTokenBefore = _stream.ReadByte();
+            _stream.ReadByte();
+            if (readTokenBefore == -1)
+            {
+                return false;
+            }
+
+            peekTokenBefore = (char)readTokenBefore;
+            return true;
+        }
+
+        private bool Back(int bytes = -1)
+        {
+            if (bytes >= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(bytes), "Must be negative");
+            }
+
+            if (_stream.Position > 0)
+            {
+                _stream.Seek(bytes, SeekOrigin.Current);
+                return true;
+            }
+
+            return false;
         }
     }
 }

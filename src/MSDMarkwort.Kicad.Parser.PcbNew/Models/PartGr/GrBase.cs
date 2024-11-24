@@ -6,19 +6,19 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr
 {
     public class GrBase
     {
-        [KicadElement("stroke")]
+        [KicadParserComplexSymbol("stroke")]
         public Stroke Stroke { get; set; } = new Stroke();
 
-        [KicadElement("fill")]
+        [KicadParserSymbol("fill")]
         public string Fill { get; set; }
 
-        [KicadElement("layer")]
+        [KicadParserSymbol("layer")]
         public string Layer { get; set; }
 
-        [KicadElement("net")]
+        [KicadParserSymbol("net")]
         public int Net { get; set; } = -1;
 
-        [KicadElement("uuid")]
+        [KicadParserSymbol("uuid")]
         public Guid Uuid { get; set; }
     }
 }

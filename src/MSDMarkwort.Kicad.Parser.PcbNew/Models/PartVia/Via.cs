@@ -8,31 +8,31 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartVia
 {
     public class Via
     {
-        [KicadElement("at")]
+        [KicadParserComplexSymbol("at")]
         public PositionAt Position { get; set; } = new PositionAt();
 
-        [KicadElement("size")]
+        [KicadParserSymbol("size")]
         public double Size { get; set; }
 
-        [KicadElement("drill")]
+        [KicadParserSymbol("drill")]
         public double Drill { get; set; }
 
-        [KicadElement("free")]
+        [KicadParserSymbol("free")]
         public bool Free { get; set; }
 
-        [KicadElement("layers")]
+        [KicadParserList("layers", KicadParserListAddType.FromParameters)]
         public List<string> Layers { get; set; } = new List<string>();
 
-        [KicadElement("locked")]
+        [KicadParserSymbol("locked")]
         public bool Locked { get; set; }
 
-        [KicadElement("teardrops")]
+        [KicadParserComplexSymbol("teardrops")]
         public Teardrops Teardrops { get; set; } = new Teardrops();
 
-        [KicadElement("net")]
+        [KicadParserSymbol("net")]
         public int Net { get; set; } = -1;
 
-        [KicadElement("uuid")]
+        [KicadParserSymbol("uuid")]
         public Guid Uuid { get; set; }
     }
 }

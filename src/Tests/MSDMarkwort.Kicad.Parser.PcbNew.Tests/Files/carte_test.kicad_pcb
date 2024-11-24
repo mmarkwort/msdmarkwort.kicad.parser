@@ -544,7 +544,7 @@
 			(at 0 0 270)
 			(size 1.6 1.6)
 			(drill 0.8)
-			(layers "*.Cu" "*.Mask")
+			(layers "*.Cu" "123*.Mask")
 			(remove_unused_layers no)
 			(net 1 "+12V")
 			(pinfunction "K")

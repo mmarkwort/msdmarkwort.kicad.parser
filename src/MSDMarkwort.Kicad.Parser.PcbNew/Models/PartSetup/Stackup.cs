@@ -4,13 +4,13 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartSetup
 {
     public class Stackup
     {
-        [KicadElement("layer")]
+        [KicadParserList("layer", KicadParserListAddType.Complex)]
         public LayerCollection Layers { get; set; } = new LayerCollection();
 
-        [KicadElement("copper_finish")]
+        [KicadParserSymbol("copper_finish")]
         public string CopperFinish { get; set; }
 
-        [KicadElement("dielectric_constraints")]
+        [KicadParserSymbol("dielectric_constraints")]
         public bool DielectricConstraints { get; set; }
     }
 }

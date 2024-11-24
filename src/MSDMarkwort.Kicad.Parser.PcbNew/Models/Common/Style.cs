@@ -4,19 +4,19 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
 {
     public class Style
     {
-        [KicadElement("thickness")]
+        [KicadParserSymbol("thickness")]
         public double Thickness { get; set; }
 
-        [KicadElement("arrow_length")]
+        [KicadParserSymbol("arrow_length")]
         public double ArrowLength { get; set; }
 
-        [KicadElement("text_position_mode")]
+        [KicadParserSymbol("text_position_mode")]
         public int TextPositionMode { get; set; }
 
-        [KicadElement("extension_height")]
+        [KicadParserSymbol("extension_height")]
         public double ExtensionHeight { get; set; }
 
-        [KicadElement("extension_offset")]
+        [KicadParserComplexSymbol("extension_offset")]
         public ExtensionOffset ExtensionOffset { get; set; } = new ExtensionOffset();
     }
 }

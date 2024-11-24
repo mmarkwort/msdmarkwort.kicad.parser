@@ -4,10 +4,10 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
 {
     public class Stroke
     {
-        [KicadElement("width")]
+        [KicadParserSymbol("width")]
         public double Width { get; set; }
 
-        [KicadElement("type")]
+        [KicadParserSymbol("type")]
         public string Type { get; set; }
     }
 }

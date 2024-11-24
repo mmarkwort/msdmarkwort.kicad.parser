@@ -1,4 +1,5 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
+using MSDMarkwort.Kicad.Parser.PcbNew.Models.Common;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartPad
 {
@@ -12,5 +13,8 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartPad
 
         [KicadParameter(2)]
         public double OuterDiameter { get; set; }
+
+        [KicadParserComplexSymbol("offset")]
+        public Position Offset { get; set; } = new Position();
     }
 }
