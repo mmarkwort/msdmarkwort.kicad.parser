@@ -8,7 +8,7 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartModel
         [KicadParameter(0)]
         public string Name { get; set; }
 
-        [KicadParserSymbol("hide")]
+        [KicadParserSymbol("hide", parameterMappings: "hide")]
         public bool Hide { get; set; }
 
         [KicadParserComplexSymbol("offset")]

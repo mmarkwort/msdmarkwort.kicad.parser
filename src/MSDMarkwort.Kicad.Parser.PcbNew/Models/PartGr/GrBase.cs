@@ -6,7 +6,7 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr
 {
     public class GrBase
     {
-        [KicadParserSymbol("locked")]
+        [KicadParserSymbol("locked", parameterMappings: "locked")]
         public bool IsLocked { get; set; }
 
         [KicadParserComplexSymbol("stroke")]

@@ -4,6 +4,7 @@ using MSDMarkwort.Kicad.Parser.Base.Parser.SExpression;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
 using MSDMarkwort.Kicad.Parser.Base.Attributes;
@@ -229,14 +230,22 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Pcb
                         }
                         else
                         {
-                            Warnings.Add(new ParserWarning
+                            var propertyInfo = TypeCache.GetPropertyInfoByParameterMapping(model.GetType(), strExpr.Value);
+                            if (propertyInfo != null)
                             {
-                                Warning = ParserWarnings.NoParameterForParameterNumberFound,
-                                Information = $"Parameter {parameterCounter} not found in {model.GetType().Name}. Value: {strExpr.Value}",
-                                LineNo = strExpr.LineNumber
-                            });
+                                ApplyParameterToModel(model, propertyInfo, strExpr);
+                            }
+                            else
+                            {
+                                Warnings.Add(new ParserWarning
+                                {
+                                    Warning = ParserWarnings.NoParameterForParameterNumberFound,
+                                    Information = $"Parameter {parameterCounter} not found in {model.GetType().Name}. Value: {strExpr.Value}",
+                                    LineNo = strExpr.LineNumber
+                                });
+                            }
                         }
-
+                        
                         ++parameterCounter;
                         break;
                     }

@@ -8,15 +8,14 @@ namespace MSDMarkwort.Kicad.Parser.EESchema.Tests
         }
 
         /*
-        [Test]
-        [Ignore]
-        public void AmpliHtTest()
+        [TestCase("Files/ampli_ht.kicad_sch")]
+        public void ParseTest(string inputPcb, bool shouldParse = true, int warningsAllowed = 0)
         {
             var parser = new EESchemaParser();
-            var parserResult = parser.Parse("Files/ampli_ht.kicad_sch");
+            var parserResult = parser.Parse(inputPcb);
 
-            Assert.IsTrue(parserResult.Success);
-            Assert.That(parserResult.Warnings.Length, Is.EqualTo(0));
+            Assert.That(parserResult.Success, Is.EqualTo(shouldParse));
+            Assert.That(parserResult.Warnings.Length, Is.EqualTo(warningsAllowed));
         }
         */
     }

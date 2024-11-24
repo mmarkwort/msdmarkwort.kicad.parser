@@ -17,6 +17,8 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Reflection
         public KicadParserSymbolSetType SymbolSetType;
 
         public PropertyInfo PropertyInfo;
+
+        public string[] ParameterMappings;
     }
 
     public class SymbolParameterInfo
@@ -47,7 +49,8 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Reflection
                             IsComplex = attribute.IsComplex,
                             ListAddType = attribute.ListAddType,
                             SymbolSetType = attribute.SymbolSetType,
-                            PropertyInfo = property
+                            PropertyInfo = property,
+                            ParameterMappings = attribute.ParameterMappings
                         }));
                 }
 
@@ -89,6 +92,16 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Reflection
             }
 
             return typeInfos.FirstOrDefault(t => t.SymbolName == symbolName);
+        }
+
+        public SymbolPropertyInfo GetPropertyInfoByParameterMapping(Type targetType, string value)
+        {
+            if (!_symbolPropertyCache.TryGetValue(targetType, out var typeInfos))
+            {
+                return null;
+            }
+
+            return typeInfos.FirstOrDefault(t => t.ParameterMappings.Contains(value));
         }
 
         public SymbolParameterInfo GetPropertyInfoByParameterNumber(Type targetType, int parameterNumber)

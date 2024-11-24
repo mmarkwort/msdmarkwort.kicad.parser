@@ -16,10 +16,7 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint
         [KicadParameter(0)]
         public string Name { get; set; }
 
-        //[KicadParameter(1)] Map this property to IsLocked
-        //public string Locked { get; set; }
-
-        [KicadParserSymbol("locked")]
+        [KicadParserSymbol("locked", parameterMappings: "locked")]
         public bool IsLocked { get; set; }
 
         [KicadParserSymbol("layer")]

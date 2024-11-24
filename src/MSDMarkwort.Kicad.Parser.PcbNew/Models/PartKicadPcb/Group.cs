@@ -13,7 +13,7 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb
         [KicadParserSymbol("id")]
         public Guid Uuid { get; set; }
 
-        [KicadParserSymbol("locked")]
+        [KicadParserSymbol("locked", parameterMappings: "locked")]
         public bool IsLocked { get; set; }
 
         [KicadParserList("members", KicadParserListAddType.FromParameters)]

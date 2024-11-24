@@ -12,5 +12,7 @@ namespace MSDMarkwort.Kicad.Parser.Base.Attributes
         public KicadParserListAddType ListAddType { get; protected set; }
 
         public KicadParserSymbolSetType SymbolSetType { get; protected set; }
+
+        public string[] ParameterMappings { get; protected set; }
     }
 }
