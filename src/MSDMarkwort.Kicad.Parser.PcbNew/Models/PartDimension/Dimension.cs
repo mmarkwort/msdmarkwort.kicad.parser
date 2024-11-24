@@ -16,11 +16,17 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartDimension
         [KicadParserSymbol("uuid")]
         public Guid Uuid { get; set; }
 
+        [KicadParserSymbol("tstamp")]
+        public Guid TStamp { get; set; }
+
         [KicadParserComplexSymbol("pts")]
         public MultiPointPositionXY Pts { get; set; } = new MultiPointPositionXY();
 
         [KicadParserSymbol("height")]
         public double Height { get; set; }
+
+        [KicadParserSymbol("orientation")]
+        public double Orientation { get; set; }
 
         [KicadParserComplexSymbol("gr_text")]
         public GrText GrText { get; set; } = new GrText();

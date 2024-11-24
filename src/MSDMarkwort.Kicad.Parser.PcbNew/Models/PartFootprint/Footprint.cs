@@ -6,6 +6,8 @@ using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartProperty;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb;
 using System;
 using MSDMarkwort.Kicad.Parser.Base.Attributes;
+using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartClass;
+using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartZone;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint
 {
@@ -13,6 +15,9 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint
     {
         [KicadParameter(0)]
         public string Name { get; set; }
+
+        //[KicadParameter(1)] Map this property to IsLocked
+        //public string Locked { get; set; }
 
         [KicadParserSymbol("locked")]
         public bool IsLocked { get; set; }
@@ -22,6 +27,12 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint
 
         [KicadParserSymbol("uuid")]
         public Guid Uuid { get; set; }
+
+        [KicadParserSymbol("tstamp")]
+        public Guid TStamp { get; set; }
+
+        [KicadParserSymbol("tedit")]
+        public string TEdit { get; set; }
 
         [KicadParserComplexSymbol("at")]
         public PositionAt PositionAt { get; set; } = new PositionAt();
@@ -37,6 +48,9 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint
 
         [KicadParserSymbol("path")]
         public string Path { get; set; }
+
+        [KicadParserSymbol("zone_connect")]
+        public int ZoneConnect { get; set; }
 
         [KicadParserSymbol("clearance")]
         public double Clearance { get; set; }
@@ -91,6 +105,12 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint
 
         [KicadParserList("group", KicadParserListAddType.Complex)]
         public GroupCollection Groups { get; set; } = new GroupCollection();
+
+        [KicadParserComplexSymbol("component_classes")]
+        public ComponentClasses ComponentClasses { get; set; } = new ComponentClasses();
+
+        [KicadParserComplexSymbol("zone")]
+        public Zone Zone { get; set; } = new Zone();
 
         public override string ToString()
         {

@@ -7,7 +7,6 @@ using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartLayers;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartSetup;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using MSDMarkwort.Kicad.Parser.Base.Attributes;
 using MSDMarkwort.Kicad.Parser.Base.Parser.SExpression.Models;
 
@@ -23,13 +22,7 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew
     {
         private static readonly TypeCache StaticTypeCache = new TypeCache();
 
-        protected ReadOnlyCollection<int> SupportedVersions = new ReadOnlyCollection<int>(new List<int>()
-        {
-            20231014,
-            20231212,
-            20231231,
-            20240108
-        });
+        protected int MinimumSupportedVersion = 20200829;
 
         static PcbNewParser()
         {
@@ -46,7 +39,7 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew
 
         protected override bool CheckVersion(KicadPcb instance)
         {
-            if (instance.Version < SupportedVersions[0])
+            if (instance.Version < MinimumSupportedVersion)
             {
                 Warnings.Add(new ParserWarning
                 {

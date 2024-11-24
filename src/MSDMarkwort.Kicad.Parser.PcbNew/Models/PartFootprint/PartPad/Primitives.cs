@@ -9,6 +9,7 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartPad
         public GrCollection<GrLine> GrLines { get; set; } = new GrCollection<GrLine>();
 
         [KicadParserList("gr_rect", KicadParserListAddType.Complex)]
+        [KicadParserList("gr_bbox", KicadParserListAddType.Complex)]
         public GrCollection<GrRect> GrRects { get; set; } = new GrCollection<GrRect>();
 
         [KicadParserList("gr_poly", KicadParserListAddType.Complex)]

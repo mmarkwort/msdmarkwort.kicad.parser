@@ -33,8 +33,17 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartSetup
         [KicadParserSymbol("dashed_line_gap_ratio")]
         public double DashedLineGapRatio { get; set; }
 
+        [KicadParserSymbol("svguseinch")]
+        public bool SvgUseInch { get; set; }
+
         [KicadParserSymbol("svgprecision")]
         public int SvgPrecision { get; set; }
+
+        [KicadParserSymbol("excludeedgelayer")]
+        public bool ExcludeEdgeLayer { get; set; }
+
+        [KicadParserSymbol("linewidth")]
+        public double LineWidth { get; set; }
 
         [KicadParserSymbol("plotframeref")]
         public bool PlotFrameRef { get; set; }

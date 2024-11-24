@@ -8,6 +8,7 @@
         NoParameterForParameterNumberFound,
         ParameterSetFailed,
         ListTypeNotSupported,
+        ImplicitSymbolUnsupportedPropertyType,
         MaybeUnsupportedFileVersion
     }
 }

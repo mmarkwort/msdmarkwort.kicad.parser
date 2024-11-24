@@ -15,7 +15,8 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Reflection
             new BooleanPropertySetter(),
             new DoublePropertySetter(),
             new IntPropertySetter(),
-            new GuidPropertySetter()
+            new GuidPropertySetter(),
+            new ByteArrayPropertySetter()
         };
 
         public static ParserWarnings SetProperty(this object target, PropertyInfo propertyInfo, string value)

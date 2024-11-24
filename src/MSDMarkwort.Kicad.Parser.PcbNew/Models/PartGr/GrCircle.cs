@@ -5,6 +5,9 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr
 {
     public class GrCircle : GrBase
     {
+        [KicadParameter(0)]
+        public string Locked { get; set; }
+
         [KicadParserComplexSymbol("center")]
         public Position CenterPosition { get; set; } = new Position();
 

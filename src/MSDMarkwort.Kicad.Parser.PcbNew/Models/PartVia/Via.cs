@@ -8,6 +8,9 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartVia
 {
     public class Via
     {
+        [KicadParameter(0)]
+        public string ViaType { get; set; }
+
         [KicadParserComplexSymbol("at")]
         public PositionAt Position { get; set; } = new PositionAt();
 
@@ -21,6 +24,7 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartVia
         public bool Free { get; set; }
 
         [KicadParserList("layers", KicadParserListAddType.FromParameters)]
+        [KicadParserList("zone_layer_connections", KicadParserListAddType.FromParameters)]
         public List<string> Layers { get; set; } = new List<string>();
 
         [KicadParserSymbol("locked")]
@@ -34,5 +38,17 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartVia
 
         [KicadParserSymbol("uuid")]
         public Guid Uuid { get; set; }
+
+        [KicadParserSymbol("tstamp")]
+        public Guid TStamp { get; set; }
+
+        [KicadParserSymbol("keep_end_layers", KicadParserSymbolSetType.ImplicitBoolTrue)]
+        public bool KeepEndLayers { get; set; }
+
+        [KicadParserSymbol("remove_unused_layers", KicadParserSymbolSetType.ImplicitBoolTrue)]
+        public bool RemoveUnusedLayers { get; set; }
+
+        [KicadParserList("tenting", KicadParserListAddType.FromParameters)]
+        public List<string> Tenting { get; set; } = new List<string>();
     }
 }

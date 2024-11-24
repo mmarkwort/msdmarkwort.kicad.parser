@@ -4,11 +4,11 @@ namespace MSDMarkwort.Kicad.Parser.Base.Attributes
 {
     public class KicadParserListAttribute : KicadParserSymbolAttribute
     {
-        public KicadParserListAttribute(string symbolName, KicadParserListAddType addType) : base(symbolName)
+        public KicadParserListAttribute(string symbolName, KicadParserListAddType listAddType) : base(symbolName)
         {
-            AddType = addType;
+            ListAddType = listAddType;
 
-            switch (addType)
+            switch (listAddType)
             {
                 case KicadParserListAddType.Complex:
                     IsComplex = true;
@@ -17,7 +17,7 @@ namespace MSDMarkwort.Kicad.Parser.Base.Attributes
                 case KicadParserListAddType.FromParameters:
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(addType), addType, null);
+                    throw new ArgumentOutOfRangeException(nameof(listAddType), listAddType, null);
             }
         }
     }

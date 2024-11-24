@@ -99,6 +99,9 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.SExpression
                                 {
                                     break;
                                 }
+
+                                sexprString.Value += _token;
+                                continue;
                             }
 
                             if (_token == TokenLibrary.DoubleQuotesToken)

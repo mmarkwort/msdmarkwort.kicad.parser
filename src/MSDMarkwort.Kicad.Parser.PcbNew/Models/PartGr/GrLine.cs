@@ -14,6 +14,9 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr
         [KicadParserSymbol("width")]
         public double Width { get; set; }
 
+        [KicadParserSymbol("angle")]
+        public double Angle { get; set; }
+
         public override string ToString()
         {
             return $"{StartPosition.X}/{StartPosition.Y}-{EndPosition.X}/{EndPosition.Y} ({Layer})";

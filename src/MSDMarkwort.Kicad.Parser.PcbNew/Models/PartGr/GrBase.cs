@@ -6,6 +6,9 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr
 {
     public class GrBase
     {
+        [KicadParserSymbol("locked")]
+        public bool IsLocked { get; set; }
+
         [KicadParserComplexSymbol("stroke")]
         public Stroke Stroke { get; set; } = new Stroke();
 
@@ -20,5 +23,8 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr
 
         [KicadParserSymbol("uuid")]
         public Guid Uuid { get; set; }
+
+        [KicadParserSymbol("tstamp")]
+        public Guid TStamp { get; set; }
     }
 }

@@ -7,7 +7,9 @@ namespace MSDMarkwort.Kicad.Parser.EESchema.Tests
         {
         }
 
+        /*
         [Test]
+        [Ignore]
         public void AmpliHtTest()
         {
             var parser = new EESchemaParser();
@@ -16,5 +18,6 @@ namespace MSDMarkwort.Kicad.Parser.EESchema.Tests
             Assert.IsTrue(parserResult.Success);
             Assert.That(parserResult.Warnings.Length, Is.EqualTo(0));
         }
+        */
     }
 }

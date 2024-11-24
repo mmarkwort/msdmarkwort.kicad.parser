@@ -14,6 +14,9 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartFp
         [KicadParserSymbol("fill")]
         public string Fill { get; set; }
 
+        [KicadParserSymbol("width")]
+        public double Width { get; set; }
+
         public override string ToString()
         {
             return $"{Center.X}/{Center.Y}-{EndPosition.X}/{EndPosition.Y} ({Layer})";

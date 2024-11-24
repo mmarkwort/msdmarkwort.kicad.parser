@@ -1,12 +1,16 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartDimension;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint;
+using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartProperty;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr;
+using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartImage;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartLayers;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartSegment;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartSetup;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartVia;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartZone;
+using MSDMarkwort.Kicad.Parser.PcbNew.PartGenerated;
+using MSDMarkwort.Kicad.Parser.PcbNew.PartTarget;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb
 {
@@ -40,6 +44,7 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb
         public NetCollection Nets { get; set; } = new NetCollection();
 
         [KicadParserList("footprint", KicadParserListAddType.Complex)]
+        [KicadParserList("module", KicadParserListAddType.Complex)]
         public FootprintCollection Footprints { get; set; } = new FootprintCollection();
 
         [KicadParserList("gr_line", KicadParserListAddType.Complex)]
@@ -54,6 +59,9 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb
         [KicadParserList("gr_text", KicadParserListAddType.Complex)]
         public GrCollection<GrText> GrTexts { get; set; } = new GrCollection<GrText>();
 
+        [KicadParserList("gr_text_box", KicadParserListAddType.Complex)]
+        public GrCollection<GrTextBox> GrTextBoxes { get; set; } = new GrCollection<GrTextBox>();
+
         [KicadParserList("gr_arc", KicadParserListAddType.Complex)]
         public GrCollection<GrArc> GrArc { get; set; } = new GrCollection<GrArc>();
 
@@ -62,6 +70,12 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb
 
         [KicadParserList("gr_circle", KicadParserListAddType.Complex)]
         public GrCollection<GrCircle> GrCircle { get; set; } = new GrCollection<GrCircle>();
+
+        [KicadParserList("gr_curve", KicadParserListAddType.Complex)]
+        public GrCollection<GrCurve> GrCurve { get; set; } = new GrCollection<GrCurve>();
+
+        [KicadParserList("image", KicadParserListAddType.Complex)]
+        public ImageCollection Images { get; set; } = new ImageCollection();
 
         [KicadParserList("dimension", KicadParserListAddType.Complex)]
         public DimensionCollection Dimensions { get; set; } = new DimensionCollection();
@@ -80,5 +94,19 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb
 
         [KicadParserList("group", KicadParserListAddType.Complex)]
         public GroupCollection Groups { get; set; } = new GroupCollection();
+
+        [KicadParserList("property", KicadParserListAddType.Complex)]
+        public PropertyCollection Properties { get; set; } = new PropertyCollection();
+
+        [KicadParserComplexSymbol("target")]
+        public Target Target { get; set; } = new Target();
+
+        [KicadParserList("generated", KicadParserListAddType.Complex)]
+        public GeneratedCollection GeneratedItems { get; set; } = new GeneratedCollection();
+
+        public override string ToString()
+        {
+            return $"{TitleBlock.Title} (Version: {Version})";
+        }
     }
 }

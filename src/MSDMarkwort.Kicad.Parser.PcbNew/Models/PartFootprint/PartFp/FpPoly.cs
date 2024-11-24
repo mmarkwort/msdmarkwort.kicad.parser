@@ -10,5 +10,8 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartFp
 
         [KicadParserSymbol("fill")]
         public string Fill { get; set; }
+
+        [KicadParserSymbol("width")]
+        public double Width { get; set; }
     }
 }

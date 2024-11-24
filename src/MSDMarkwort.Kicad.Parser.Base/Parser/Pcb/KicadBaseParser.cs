@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using MSDMarkwort.Kicad.Parser.Base.Attributes;
 using MSDMarkwort.Kicad.Parser.Base.Parser.SExpression.Models;
 
@@ -65,7 +66,7 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Pcb
             return new ParserResult<TModel>
             {
                 Success = error == null,
-                Result = instance.Root,
+                Result = instance?.Root,
                 Warnings = Warnings.ToArray(),
                 Error = error
             };
@@ -88,16 +89,13 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Pcb
         {
             var idx = 0;
             var modelType = model.GetType();
+            var tempStringList = new List<string>();
             SymbolPropertyInfo currentSymbolPropertyInfo = null;
             var parameterCounter = 0;
 
             for (; idx < list.Count; ++idx)
             {
                 var expr = list[idx];
-
-                if (expr.LineNumber == 1650)
-                {
-                }
 
                 switch (expr.Type)
                 {
@@ -127,9 +125,9 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Pcb
                         var typeInfo = TypeCache.GetPropertyInfoBySymbolName(modelType, symbol.Value);
                         if (typeInfo != null)
                         {
-                            if (typeInfo.AddType != KicadParserListAddType.NotSet)
+                            if (typeInfo.ListAddType != KicadParserListAddType.NotSet)
                             {
-                                switch (typeInfo.AddType)
+                                switch (typeInfo.ListAddType)
                                 {
                                     case KicadParserListAddType.Complex:
                                         var targetList = typeInfo.PropertyInfo.GetValue(model);
@@ -147,6 +145,24 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Pcb
                                         throw new ArgumentOutOfRangeException();
                                 }
 
+                                continue;
+                            }
+
+                            if (typeInfo.SymbolSetType == KicadParserSymbolSetType.ImplicitBoolTrue)
+                            {
+                                if (typeInfo.PropertyInfo.PropertyType != typeof(bool))
+                                {
+                                    Warnings.Add(new ParserWarning
+                                    {
+                                        Warning = ParserWarnings.ImplicitSymbolUnsupportedPropertyType,
+                                        Information = $"Setting of an implicit marked symbol can only be applied to boolean property. Property {typeInfo.PropertyInfo.Name}, Symbol {symbol.Value}",
+                                        LineNo = symbol.LineNumber
+                                    });
+                                    
+                                    continue;
+                                }
+
+                                typeInfo.PropertyInfo.SetValue(model, true);
                                 continue;
                             }
 
@@ -176,10 +192,26 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Pcb
 
                         if (currentSymbolPropertyInfo != null)
                         {
-                            if (currentSymbolPropertyInfo.AddType == KicadParserListAddType.FromParameters)
+                            if (currentSymbolPropertyInfo.ListAddType == KicadParserListAddType.FromParameters)
                             {
                                 var parameterList = currentSymbolPropertyInfo.PropertyInfo.GetValue(model);
                                 AddParameterToList(parameterList, strExpr);
+                                continue;
+                            }
+
+                            if (currentSymbolPropertyInfo.SymbolSetType == KicadParserSymbolSetType.TreatParametersAsOneString)
+                            {
+                                tempStringList.Add(strExpr.Value);
+
+                                if (list.Count - 1 == idx ||
+                                   list[idx + 1].Type != SExprTypes.String)
+                                {
+                                    ApplyParameterToModel(model, currentSymbolPropertyInfo, new SExprString
+                                    {
+                                        Value = string.Concat(tempStringList)
+                                    });
+                                }
+
                                 continue;
                             }
 
@@ -242,7 +274,7 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Pcb
             var listType = list.GetType();
             var genericType = listType.GetListGenericType();
 
-            if (genericType != typeof(string))
+            if (genericType != typeof(string) && genericType != typeof(Guid))
             {
                 Warnings.Add(new ParserWarning
                 {
@@ -254,8 +286,17 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Pcb
                 return;
             }
 
-            object newItem = new string(sexprString.Value);
-            
+            object newItem = null;
+
+            if (genericType == typeof(string))
+            {
+                newItem = new string(sexprString.Value);
+            }
+            else if (genericType == typeof(Guid))
+            {
+                newItem = Guid.Parse(sexprString.Value);
+            }
+
             var addMethod = listType.GetMethod(nameof(IList.Add));
             addMethod.Invoke(list, new[] { newItem });
         }

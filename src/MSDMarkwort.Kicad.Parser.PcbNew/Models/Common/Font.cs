@@ -4,6 +4,9 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
 {
     public class Font
     {
+        [KicadParameter(0)]
+        public string IsBold { get; set; }
+
         [KicadParserSymbol("face")]
         public string FontFace { get; set; }
 

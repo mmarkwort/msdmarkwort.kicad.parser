@@ -13,10 +13,16 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
         [KicadParserSymbol("text_position_mode")]
         public int TextPositionMode { get; set; }
 
+        [KicadParserSymbol("text_frame")]
+        public int TextFrame { get; set; }        
+
         [KicadParserSymbol("extension_height")]
         public double ExtensionHeight { get; set; }
 
-        [KicadParserComplexSymbol("extension_offset")]
-        public ExtensionOffset ExtensionOffset { get; set; } = new ExtensionOffset();
+        [KicadParserSymbol("extension_offset")]
+        public string ExtensionOffset { get; set; }
+
+        [KicadParameter(0)]
+        public string Alignment { get; set; }
     }
 }

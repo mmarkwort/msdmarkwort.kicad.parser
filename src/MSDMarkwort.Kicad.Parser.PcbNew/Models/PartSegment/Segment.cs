@@ -26,5 +26,8 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartSegment
 
         [KicadParserSymbol("uuid")]
         public Guid Uuid { get; set; }
+
+        [KicadParserSymbol("tstamp")]
+        public Guid TStamp { get; set; }
     }
 }

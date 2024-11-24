@@ -16,7 +16,6 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartSetup
         [KicadParserSymbol("color")]
         public string Color { get; set; }
 
-
         [KicadParserSymbol("material")]
         public string Material { get; set; }
 

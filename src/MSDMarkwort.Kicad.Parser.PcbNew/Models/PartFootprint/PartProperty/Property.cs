@@ -15,6 +15,9 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartProperty
         [KicadParserSymbol("uuid")]
         public Guid Uuid { get; set; }
 
+        [KicadParserSymbol("tstamp")]
+        public Guid TStamp { get; set; }
+
         [KicadParserComplexSymbol("at")]
         public PositionAt PositionAt { get; set; } = new PositionAt();
 

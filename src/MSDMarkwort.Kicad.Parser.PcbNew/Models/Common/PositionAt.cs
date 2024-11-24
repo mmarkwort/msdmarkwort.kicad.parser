@@ -7,6 +7,9 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
         [KicadParameter(2)]
         public double Angle { get; set; }
 
+        [KicadParameter(3)]
+        public string Locked { get; set; }
+
         public override string ToString()
         {
             return $"{X}/{Y} ({Angle}°)";

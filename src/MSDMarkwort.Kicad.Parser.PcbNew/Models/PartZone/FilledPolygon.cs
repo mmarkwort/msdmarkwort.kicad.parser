@@ -8,6 +8,9 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartZone
         [KicadParserSymbol("layer")]
         public string Layer { get; set; }
 
+        [KicadParserSymbol("island", KicadParserSymbolSetType.ImplicitBoolTrue)]
+        public bool IsIsland { get; set; }
+
         [KicadParserComplexSymbol("pts")]
         public MultiPointPositionXY Pts { get; set; } = new MultiPointPositionXY();
     }

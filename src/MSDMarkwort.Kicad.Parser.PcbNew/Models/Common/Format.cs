@@ -4,6 +4,9 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
 {
     public class Format
     {
+        [KicadParameter(0)]
+        public string SuppressZeroes { get; set; }
+
         [KicadParserSymbol("prefix")]
         public string Prefix { get; set; }
 
@@ -18,5 +21,8 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
 
         [KicadParserSymbol("precision")]
         public int Precision { get; set; }
+
+        [KicadParserSymbol("override_value")]
+        public string OverrideValue { get; set; }
     }
 }

@@ -12,7 +12,9 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Reflection
 
         public bool IsComplex;
 
-        public KicadParserListAddType AddType;
+        public KicadParserListAddType ListAddType;
+
+        public KicadParserSymbolSetType SymbolSetType;
 
         public PropertyInfo PropertyInfo;
     }
@@ -35,28 +37,23 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Reflection
 
             foreach (var type in typeAssembly.GetTypes())
             {
-                var symbolPropertyInfos =
-                    type.GetProperties().Where(p => p.GetCustomAttribute<KicadParserBaseAttribute>() != null)
-                                            .Select(p =>
-                                            {
-                                                var attr = p.GetCustomAttribute<KicadParserBaseAttribute>();
-                                                if (attr == null)
-                                                {
-                                                    throw new InvalidOperationException("Attribute not expected");
-                                                }
-
-                                                return new SymbolPropertyInfo
-                                                {
-                                                    SymbolName = attr.SymbolName,
-                                                    IsComplex = attr.IsComplex,
-                                                    AddType = attr.AddType,
-                                                    PropertyInfo = p
-                                                };
-                                            }).ToArray();
+                var symbolPropertyInfos = new List<SymbolPropertyInfo>();
+                foreach (var property in type.GetProperties())
+                {
+                    symbolPropertyInfos.AddRange(property.GetCustomAttributes<KicadParserBaseAttribute>()
+                        .Select(attribute => new SymbolPropertyInfo
+                        {
+                            SymbolName = attribute.SymbolName,
+                            IsComplex = attribute.IsComplex,
+                            ListAddType = attribute.ListAddType,
+                            SymbolSetType = attribute.SymbolSetType,
+                            PropertyInfo = property
+                        }));
+                }
 
                 if (symbolPropertyInfos.Any())
                 {
-                    _symbolPropertyCache.Add(type, symbolPropertyInfos);
+                    _symbolPropertyCache.Add(type, symbolPropertyInfos.ToArray());
                 }
 
                 var symbolParameterInfos =

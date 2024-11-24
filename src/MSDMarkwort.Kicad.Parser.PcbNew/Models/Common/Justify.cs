@@ -9,5 +9,8 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
 
         [KicadParameter(1)]
         public string VerticalAlignment { get; set; }
+
+        [KicadParameter(2)]
+        public string Mirror { get; set; }
     }
 }
