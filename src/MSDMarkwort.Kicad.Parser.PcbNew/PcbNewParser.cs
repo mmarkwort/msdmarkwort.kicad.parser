@@ -34,8 +34,6 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew
         {
         }
 
-        protected override Type[] OverrideTypes => new[] { typeof(BoardLayerCollection), typeof(Drill), typeof(Tenting) };
-
         protected override string[] UnexpectedClosingBracketsIndicators => new string[] { "extension_offset" };
 
         protected override bool CheckVersion(KicadPcb instance)

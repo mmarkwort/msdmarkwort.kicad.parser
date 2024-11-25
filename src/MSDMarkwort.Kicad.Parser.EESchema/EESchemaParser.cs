@@ -24,8 +24,6 @@ namespace MSDMarkwort.Kicad.Parser.EESchema
             StaticTypeCache.LoadCache(new[] { typeof(EESchemaParser).Assembly, typeof(Font).Assembly });
         }
 
-        protected override string[] UnexpectedClosingBracketsIndicators => new string[] { "offset" };
-
         public EESchemaParser() : base(StaticTypeCache)
         {
         }
