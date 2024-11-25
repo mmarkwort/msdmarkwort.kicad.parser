@@ -6,124 +6,133 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartSetup
 {
     public class PcbPlotParameters
     {
-        [KicadElement("layerselection")]
+        [KicadParserSymbol("layerselection")]
         public string LayerSelection { get; set; }
 
-        [KicadElement("plot_on_all_layers_selection")]
+        [KicadParserSymbol("plot_on_all_layers_selection")]
         public string PlotOnAllLayersSelection { get; set; }
 
-        [KicadElement("disableapertmacros")]
+        [KicadParserSymbol("disableapertmacros")]
         public bool DisableApertMacros { get; set; }
 
-        [KicadElement("usegerberextensions")]
+        [KicadParserSymbol("usegerberextensions")]
         public bool UseGerberExtensions { get; set; }
 
-        [KicadElement("usegerberattributes")]
+        [KicadParserSymbol("usegerberattributes")]
         public bool UseGerberAttributes { get; set; }
 
-        [KicadElement("usegerberadvancedattributes")]
+        [KicadParserSymbol("usegerberadvancedattributes")]
         public bool UseGerberAdvancedAttributes { get; set; }
 
-        [KicadElement("creategerberjobfile")]
+        [KicadParserSymbol("creategerberjobfile")]
         public bool CreateGerberJobFile { get; set; }
 
-        [KicadElement("dashed_line_dash_ratio")]
+        [KicadParserSymbol("dashed_line_dash_ratio")]
         public double DashedLineDashRatio { get; set; }
 
-        [KicadElement("dashed_line_gap_ratio")]
+        [KicadParserSymbol("dashed_line_gap_ratio")]
         public double DashedLineGapRatio { get; set; }
 
-        [KicadElement("svgprecision")]
+        [KicadParserSymbol("svguseinch")]
+        public bool SvgUseInch { get; set; }
+
+        [KicadParserSymbol("svgprecision")]
         public int SvgPrecision { get; set; }
 
-        [KicadElement("plotframeref")]
+        [KicadParserSymbol("excludeedgelayer")]
+        public bool ExcludeEdgeLayer { get; set; }
+
+        [KicadParserSymbol("linewidth")]
+        public double LineWidth { get; set; }
+
+        [KicadParserSymbol("plotframeref")]
         public bool PlotFrameRef { get; set; }
 
-        [KicadElement("viasonmask")]
+        [KicadParserSymbol("viasonmask")]
         public bool ViasOnMask { get; set; }
 
-        [KicadElement("mode")]
+        [KicadParserSymbol("mode")]
         public int Mode { get; set; }
 
-        [KicadElement("useauxorigin")]
+        [KicadParserSymbol("useauxorigin")]
         public bool UseAuxOrigin { get; set; }
 
-        [KicadElement("hpglpennumber")]
+        [KicadParserSymbol("hpglpennumber")]
         public int HpglPenNumber { get; set; }
 
-        [KicadElement("hpglpenspeed")]
+        [KicadParserSymbol("hpglpenspeed")]
         public int HpglPenSpeed { get; set; }
 
-        [KicadElement("hpglpendiameter")]
+        [KicadParserSymbol("hpglpendiameter")]
         public double HpglPenDiameter { get; set; }
 
-        [KicadElement("pdf_front_fp_property_popups")]
+        [KicadParserSymbol("pdf_front_fp_property_popups")]
         public bool PdfFrontFpPropertyPopups { get; set; }
 
-        [KicadElement("pdf_back_fp_property_popups")]
+        [KicadParserSymbol("pdf_back_fp_property_popups")]
         public bool PdfBackFpPropertyPopups { get; set; }
 
-        [KicadElement("pdf_metadata")]
+        [KicadParserSymbol("pdf_metadata")]
         public bool PdfMetadata { get; set; }
 
-        [KicadElement("dxfpolygonmode")]
+        [KicadParserSymbol("dxfpolygonmode")]
         public bool DxfPolygonMode { get; set; }
 
-        [KicadElement("dxfimperialunits")]
+        [KicadParserSymbol("dxfimperialunits")]
         public bool DxfImperialUnits { get; set; }
 
-        [KicadElement("dxfusepcbnewfont")]
+        [KicadParserSymbol("dxfusepcbnewfont")]
         public bool DxfUsePcbNewFont { get; set; }
 
-        [KicadElement("psnegative")]
+        [KicadParserSymbol("psnegative")]
         public bool PsNegative { get; set; }
 
-        [KicadElement("psa4output")]
+        [KicadParserSymbol("psa4output")]
         public bool Psa4Output { get; set; }
 
-        [KicadElement("plotreference")]
+        [KicadParserSymbol("plotreference")]
         public bool PlotReference { get; set; }
 
-        [KicadElement("plotvalue")]
+        [KicadParserSymbol("plotvalue")]
         public bool PlotValue { get; set; }
 
-        [KicadElement("plotfptext")]
+        [KicadParserSymbol("plotfptext")]
         public bool PlotFpText { get; set; }
 
-        [KicadElement("plotinvisibletext")]
+        [KicadParserSymbol("plotinvisibletext")]
         public bool PlotInvisibleText { get; set; }
 
-        [KicadElement("sketchpadsonfab")]
+        [KicadParserSymbol("sketchpadsonfab")]
         public bool SketchPadsOnFab { get; set; }
 
-        [KicadElement("plotpadnumbers")]
+        [KicadParserSymbol("plotpadnumbers")]
         public bool PlotPadNumbers { get; set; }
 
-        [KicadElement("hidednponfab")]
+        [KicadParserSymbol("hidednponfab")]
         public bool HideDnpOnFab { get; set; }
 
-        [KicadElement("sketchdnponfab")]
+        [KicadParserSymbol("sketchdnponfab")]
         public bool SketchDnpOnFab { get; set; }
 
-        [KicadElement("crossoutdnponfab")]
+        [KicadParserSymbol("crossoutdnponfab")]
         public bool CrossOutDnpOnFab { get; set; }
 
-        [KicadElement("subtractmaskfromsilk")]
+        [KicadParserSymbol("subtractmaskfromsilk")]
         public bool SubtractMaskFromSilk { get; set; }
 
-        [KicadElement("outputformat")]
+        [KicadParserSymbol("outputformat")]
         public int OutputFormat { get; set; }
 
-        [KicadElement("mirror")]
+        [KicadParserSymbol("mirror")]
         public bool Mirror { get; set; }
 
-        [KicadElement("drillshape")]
+        [KicadParserSymbol("drillshape")]
         public int DrillShape { get; set; }
 
-        [KicadElement("scaleselection")]
+        [KicadParserSymbol("scaleselection")]
         public int ScaleSelection { get; set; }
 
-        [KicadElement("outputdirectory")]
+        [KicadParserSymbol("outputdirectory")]
         public string OutputDirectory { get; set; }
     }
 }

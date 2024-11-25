@@ -4,10 +4,10 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartZone
 {
     public class Placement
     {
-        [KicadElement("enabled")]
+        [KicadParserSymbol("enabled")]
         public bool Enabled { get; set; }
 
-        [KicadElement("sheetname")]
+        [KicadParserSymbol("sheetname")]
         public string SheetName { get; set; }
     }
 }

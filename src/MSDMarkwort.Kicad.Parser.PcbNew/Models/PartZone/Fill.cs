@@ -7,22 +7,40 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartZone
         [KicadParameter(0)]
         public bool FillArea { get; set; }
 
-        [KicadElement("thermal_gap")]
+        [KicadParserSymbol("thermal_gap")]
         public double ThermalGap { get; set; }
 
-        [KicadElement("thermal_bridge_width")]
+        [KicadParserSymbol("thermal_bridge_width")]
         public double ThermalBridgeWidth { get; set; }
 
-        [KicadElement("smoothing")]
+        [KicadParserSymbol("smoothing")]
         public string Smoothing { get; set; }
 
-        [KicadElement("radius")]
+        [KicadParserSymbol("radius")]
         public double Radius { get; set; }
 
-        [KicadElement("island_removal_mode")]
+        [KicadParserSymbol("island_removal_mode")]
         public int IslandRemovalMode { get; set; }
 
-        [KicadElement("island_area_min")]
+        [KicadParserSymbol("island_area_min")]
         public int IslandAreaMin { get; set; }
+
+        [KicadParserSymbol("mode")]
+        public string Mode { get; set; }
+
+        [KicadParserSymbol("hatch_thickness")]
+        public double HatchThickness { get; set; }
+
+        [KicadParserSymbol("hatch_gap")]
+        public double HatchGap { get; set; }
+
+        [KicadParserSymbol("hatch_orientation")]
+        public double HatchOrientation { get; set; }
+
+        [KicadParserSymbol("hatch_border_algorithm")]
+        public string HatchBorderAlgorithm { get; set; }
+
+        [KicadParserSymbol("hatch_min_hole_area")]
+        public double HatchMinHoleArea { get; set; }
     }
 }

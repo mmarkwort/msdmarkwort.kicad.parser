@@ -7,23 +7,22 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartSetup
         [KicadParameter(0)]
         public string Name { get; set; }
 
-        [KicadElement("type")]
+        [KicadParserSymbol("type")]
         public string Type { get; set; }
 
-        [KicadElement("thickness")]
+        [KicadParserSymbol("thickness")]
         public double Thickness { get; set; }
 
-        [KicadElement("color")]
+        [KicadParserSymbol("color")]
         public string Color { get; set; }
 
-
-        [KicadElement("material")]
+        [KicadParserSymbol("material")]
         public string Material { get; set; }
 
-        [KicadElement("epsilon_r")]
+        [KicadParserSymbol("epsilon_r")]
         public double EpsilonR { get; set; }
 
-        [KicadElement("loss_tangent")]
+        [KicadParserSymbol("loss_tangent")]
         public double LossTangent { get; set; }
     }
 }

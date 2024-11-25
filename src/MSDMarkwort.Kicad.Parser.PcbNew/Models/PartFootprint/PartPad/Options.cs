@@ -4,10 +4,10 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartPad
 {
     public class Options
     {
-        [KicadElement("clearance")]
+        [KicadParserSymbol("clearance")]
         public string Clearance { get; set; }
 
-        [KicadElement("anchor")]
+        [KicadParserSymbol("anchor")]
         public string Anchor { get; set; }
     }
 }

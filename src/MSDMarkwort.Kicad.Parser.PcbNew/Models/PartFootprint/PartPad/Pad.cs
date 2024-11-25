@@ -1,8 +1,9 @@
-﻿using MSDMarkwort.Kicad.Parser.PcbNew.Models.Common;
-using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using MSDMarkwort.Kicad.Parser.Base.Attributes;
+using MSDMarkwort.Kicad.Parser.Model.Common;
+using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartPad.PartPadStack;
+using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartPad
 {
@@ -17,67 +18,98 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartPad
         [KicadParameter(2)]
         public string Shape { get; set; }
 
-        [KicadElement("at")]
+        [KicadParameter(3)]
+        public string Locked { get; set; }
+
+        [KicadParserComplexSymbol("at")]
         public PositionAt PositionAt { get; set; } = new PositionAt();
 
-        [KicadElement("size")]
+        [KicadParserComplexSymbol("size")]
         public Size Size { get; set; } = new Size();
 
-        [KicadElement("rect_delta")]
+        [KicadParserComplexSymbol("rect_delta")]
         public Size RectDelta { get; set; } = new Size();
 
-        [KicadElement("drill")]
+        [KicadParserComplexSymbol("drill")]
         public Drill Drill { get; set; } = new Drill();
 
-        [KicadElement("layers")]
+        [KicadParserList("layers", KicadParserListAddType.FromParameters)]
+        [KicadParserList("zone_layer_connections", KicadParserListAddType.FromParameters)]
         public List<string> Layers { get; set; } = new List<string>();
 
-        [KicadElement("remove_unused_layers")]
+        [KicadParserSymbol("die_length")]
+        public double DieLength { get; set; }
+
+        [KicadParserSymbol("remove_unused_layers")]
         public bool RemoveUnusedLayers { get; set; }
 
-        [KicadElement("roundrect_rratio")]
+        [KicadParserSymbol("roundrect_rratio")]
         public double RoundRectRatio { get; set; }
 
-        [KicadElement("net")]
+        [KicadParserComplexSymbol("net")]
         public Net Net { get; set; } = new Net();
 
-        [KicadElement("pintype")]
+        [KicadParserSymbol("pintype")]
         public string PinType { get; set; }
 
-        [KicadElement("pinfunction")]
+        [KicadParserSymbol("pinfunction")]
         public string PinFunction { get; set; }
 
-        [KicadElement("solder_paste_margin_ratio")]
-        public double SolderPasteMarginRatio { get; set; }
-
-        [KicadElement("zone_connect")]
-        public int ZoneConnect { get; set; }
-
-        [KicadElement("thermal_bridge_width")]
-        public double ThermalBridgeWidth { get; set; }
-
-        [KicadElement("thermal_gap")]
-        public double ThermalGap { get; set; }
-
-        [KicadElement("thermal_bridge_angle")]
-        public double ThermalBridgeAngle { get; set; }
-
-        [KicadElement("options")]
-        public Options Options { get; set; } = new Options();
-
-        [KicadElement("primitives")]
-        public Primitives Primitives { get; set; } = new Primitives();
-
-        [KicadElement("solder_mask_margin")]
+        [KicadParserSymbol("solder_mask_margin")]
         public double SolderMaskMargin { get; set; }
 
-        [KicadElement("clearance")]
+        [KicadParserSymbol("solder_paste_margin")]
+        public double SolderPasteMargin { get; set; }
+
+        [KicadParserSymbol("solder_paste_margin_ratio")]
+        public double SolderPasteMarginRatio { get; set; }
+
+        [KicadParserSymbol("zone_connect")]
+        public int ZoneConnect { get; set; }
+
+        [KicadParserSymbol("thermal_bridge_width")]
+        public double ThermalBridgeWidth { get; set; }
+
+        [KicadParserSymbol("thermal_gap")]
+        public double ThermalGap { get; set; }
+
+        [KicadParserSymbol("thermal_bridge_angle")]
+        public double ThermalBridgeAngle { get; set; }
+
+        [KicadParserComplexSymbol("options")]
+        public Options Options { get; set; } = new Options();
+
+        [KicadParserComplexSymbol("primitives")]
+        public Primitives Primitives { get; set; } = new Primitives();
+
+        [KicadParserSymbol("clearance")]
         public double Clearance { get; set; }
 
-        [KicadElement("uuid")]
+        [KicadParserSymbol("uuid")]
         public Guid Uuid { get; set; }
 
-        [KicadElement("teardrops")]
+        [KicadParserSymbol("tstamp")]
+        public Guid TStamp { get; set; }
+
+        [KicadParserSymbol("locked", KicadParserSymbolSetType.ImplicitBoolTrue)]
+        public bool IsLocked { get; set; }
+
+        [KicadParserComplexSymbol("teardrops")]
         public Teardrops Teardrops { get; set; } = new Teardrops();
+
+        [KicadParserSymbol("property")]
+        public string Property { get; set; }
+
+        [KicadParserSymbol("keep_end_layers", KicadParserSymbolSetType.ImplicitBoolTrue)]
+        public bool KeepEndLayers { get; set; }
+
+        [KicadParserSymbol("chamfer_ratio")]
+        public double ChamferRatio { get; set; }
+
+        [KicadParserList("chamfer", KicadParserListAddType.FromParameters)]
+        public List<string> Chamfers { get; set; } = new List<string>();
+
+        [KicadParserComplexSymbol("padstack")]
+        public PadStack PadStack { get; set; } = new PadStack();
     }
 }

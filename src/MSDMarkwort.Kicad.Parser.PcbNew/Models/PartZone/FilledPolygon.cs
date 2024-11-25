@@ -1,14 +1,17 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
-using MSDMarkwort.Kicad.Parser.PcbNew.Models.Common;
+using MSDMarkwort.Kicad.Parser.Model.Common;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartZone
 {
-    public class FilledPolygon : IPts
+    public class FilledPolygon
     {
-        [KicadElement("layer")]
+        [KicadParserSymbol("layer")]
         public string Layer { get; set; }
 
-        [KicadElement("pts")]
+        [KicadParserSymbol("island", KicadParserSymbolSetType.ImplicitBoolTrue)]
+        public bool IsIsland { get; set; }
+
+        [KicadParserComplexSymbol("pts")]
         public MultiPointPositionXY Pts { get; set; } = new MultiPointPositionXY();
     }
 }

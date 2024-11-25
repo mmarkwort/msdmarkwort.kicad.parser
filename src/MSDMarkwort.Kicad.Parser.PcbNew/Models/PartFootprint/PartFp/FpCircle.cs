@@ -1,18 +1,21 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
-using MSDMarkwort.Kicad.Parser.PcbNew.Models.Common;
+using MSDMarkwort.Kicad.Parser.Model.Common;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartFp
 {
     public class FpCircle : FpBase
     {
-        [KicadElement("center")]
+        [KicadParserComplexSymbol("center")]
         public Position Center { get; set; } = new Position();
 
-        [KicadElement("end")]
+        [KicadParserComplexSymbol("end")]
         public Position EndPosition { get; set; } = new Position();
 
-        [KicadElement("fill")]
+        [KicadParserSymbol("fill")]
         public string Fill { get; set; }
+
+        [KicadParserSymbol("width")]
+        public double Width { get; set; }
 
         public override string ToString()
         {

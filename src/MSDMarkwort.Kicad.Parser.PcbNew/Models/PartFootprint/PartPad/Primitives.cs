@@ -5,22 +5,23 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartPad
 {
     public class Primitives
     {
-        [KicadElement("gr_line")]
+        [KicadParserList("gr_line", KicadParserListAddType.Complex)]
         public GrCollection<GrLine> GrLines { get; set; } = new GrCollection<GrLine>();
 
-        [KicadElement("gr_rect")]
+        [KicadParserList("gr_rect", KicadParserListAddType.Complex)]
+        [KicadParserList("gr_bbox", KicadParserListAddType.Complex)]
         public GrCollection<GrRect> GrRects { get; set; } = new GrCollection<GrRect>();
 
-        [KicadElement("gr_poly")]
+        [KicadParserList("gr_poly", KicadParserListAddType.Complex)]
         public GrCollection<GrPoly> GrPolys { get; set; } = new GrCollection<GrPoly>();
 
-        [KicadElement("gr_text")]
+        [KicadParserList("gr_text", KicadParserListAddType.Complex)]
         public GrCollection<GrText> GrTexts { get; set; } = new GrCollection<GrText>();
 
-        [KicadElement("gr_arc")]
+        [KicadParserList("gr_arc", KicadParserListAddType.Complex)]
         public GrCollection<GrArc> GrArcs { get; set; } = new GrCollection<GrArc>();
 
-        [KicadElement("gr_circle")]
+        [KicadParserList("gr_circle", KicadParserListAddType.Complex)]
         public GrCollection<GrCircle> GrCircle { get; set; } = new GrCollection<GrCircle>();
     }
 }

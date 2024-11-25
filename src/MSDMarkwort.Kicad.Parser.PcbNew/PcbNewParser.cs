@@ -1,32 +1,33 @@
-﻿using MSDMarkwort.Kicad.Parser.Base.Parser.Pcb;
+﻿using System;
+using System.Collections.Generic;
+using MSDMarkwort.Kicad.Parser.Base.Attributes;
+using MSDMarkwort.Kicad.Parser.Base.Parser.Pcb;
 using MSDMarkwort.Kicad.Parser.Base.Parser.Reflection;
 using MSDMarkwort.Kicad.Parser.Base.Parser.Result;
-using MSDMarkwort.Kicad.Parser.Base.Parser.SExpression;
+using MSDMarkwort.Kicad.Parser.Base.Parser.SExpression.Models;
+using MSDMarkwort.Kicad.Parser.Model.Common;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartPad;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartLayers;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartSetup;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew
 {
-    public class PcbNewParser : BaseParser<KicadPcb>
+    public class PcbParserRootModel : KicadRootModel<KicadPcb>
+    {
+        [KicadParserComplexSymbol("kicad_pcb")]
+        public override KicadPcb Root { get; set; } = new KicadPcb();
+    }
+
+    public class PcbNewParser : KicadBaseParser<KicadPcb, PcbParserRootModel>
     {
         private static readonly TypeCache StaticTypeCache = new TypeCache();
 
-        protected ReadOnlyCollection<int> SupportedVersions = new ReadOnlyCollection<int>(new List<int>()
-        {
-            20231014,
-            20231212,
-            20231231,
-            20240108
-        });
+        protected int MinimumSupportedVersion = 20200829;
 
         static PcbNewParser()
         {
-            StaticTypeCache.LoadCache(typeof(PcbNewParser).Assembly);
+            StaticTypeCache.LoadCache(new []{ typeof(PcbNewParser).Assembly, typeof(Font).Assembly });
         }
 
         public PcbNewParser() : base(StaticTypeCache)
@@ -35,9 +36,11 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew
 
         protected override Type[] OverrideTypes => new[] { typeof(BoardLayerCollection), typeof(Drill), typeof(Tenting) };
 
+        protected override string[] UnexpectedClosingBracketsIndicators => new string[] { "extension_offset" };
+
         protected override bool CheckVersion(KicadPcb instance)
         {
-            if (instance.Version < SupportedVersions[0])
+            if (instance.Version < MinimumSupportedVersion)
             {
                 Warnings.Add(new ParserWarning
                 {
@@ -52,100 +55,27 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew
             return true;
         }
 
-        protected override bool HandleOverrideType(Type overrideType, object model, Element element)
+        protected override int HandleOverrideType(Type overrideType, object model, List<SExpr> containingList, int idxInList, SExprSymbol symbol, out object overrideModel, out Type overrideModelType)
         {
-            if (model.GetType() == typeof(BoardLayerCollection))
+            if (model.GetType() == typeof(BoardLayers))
             {
-                HandleBoardLayerCollection(model as BoardLayerCollection, element.Children);
-            }
-            else if (model.GetType() == typeof(Drill))
-            {
-                HandleDrill(model as Drill, element);
-            }
-            else if (model.GetType() == typeof(Tenting))
-            {
-                HandleTenting(model as Tenting, element);
+                return HandleBoardLayers(model as BoardLayers, symbol, idxInList, out overrideModel, out overrideModelType);
             }
 
-            return true;
+            return base.HandleOverrideType(overrideType, model, containingList, idxInList, symbol, out overrideModel, out overrideModelType);
         }
 
-        private void HandleBoardLayerCollection(BoardLayerCollection boardLayerCollection, List<Element> layerElements)
+        private int HandleBoardLayers(BoardLayers boardLayers, SExprSymbol symbol, int idxInList, out object overrideModel, out Type overrideModelType)
         {
-            foreach (var layerElement in layerElements)
-            {
-                var newLayer = new BoardLayer();
-                boardLayerCollection.Add(newLayer);
+            var newLayer = new BoardLayer { Number = int.Parse(symbol.Value) };
 
-                if (int.TryParse(layerElement.ElementName, out var number))
-                {
-                    newLayer.Number = number;
-                }
-                else
-                {
-                    Warnings.Add(new ParserWarning
-                    {
-                        Warning = ParserWarnings.ParameterSetFailed,
-                        Information = $"{layerElement.ElementName}",
-                        LineNo = layerElement.LineNumber
-                    });
-                }
+            overrideModel = newLayer;
+            overrideModelType = newLayer.GetType();
+            symbol.Value = "layers";
 
-                var parameterCounter = 1;
-                foreach (var parameter in layerElement.Parameters)
-                {
-                    ApplyParameter(newLayer, parameter, parameterCounter);
-                    ++parameterCounter;
-                }
-            }
-        }
+            boardLayers.Layers.Add(newLayer);
 
-        private void HandleDrill(Drill drill, Element element)
-        {
-            if (element.Parameters.Count == 1)
-            {
-                if (double.TryParse(element.Parameters[0], out var outerDiameter))
-                {
-                    drill.OuterDiameter = outerDiameter;
-                }
-                else
-                {
-                    Warnings.Add(new ParserWarning
-                    {
-                        Warning = ParserWarnings.ParameterSetFailed,
-                        Information = $"{element.ElementName}",
-                        LineNo = element.LineNumber
-                    });
-                }
-            }
-            else if (element.Parameters.Count > 1)
-            {
-                ApplyParameters(drill, element);
-            }
-        }
-
-        private void HandleTenting(Tenting tenting, Element element)
-        {
-            foreach (var parameter in element.Parameters)
-            {
-                if (parameter == "front")
-                {
-                    tenting.TentViaFront = true;
-                }
-                else if (parameter == "back")
-                {
-                    tenting.TentViaBack = true;
-                }
-                else
-                {
-                    Warnings.Add(new ParserWarning
-                    {
-                        Warning = ParserWarnings.ParameterNotFound,
-                        Information = $"{element.ElementName}: Unknown parameters: {string.Join(',', element.Parameters)}",
-                        LineNo = element.LineNumber
-                    });
-                }
-            }
+            return idxInList;
         }
     }
 }

@@ -5,7 +5,7 @@ name: .NET
 
 on:
   push:
-    branches: [ "main", "mmarkwort-build-pipeline" ]
+    branches: [ "main", "mmarkwort-build-pipeline", "feature/*", "fix/*" ]
   pull_request:
     branches: [ "main", "mmarkwort-build-pipeline" ]
 
@@ -36,6 +36,7 @@ jobs:
     - name: Test
       run: dotnet test src/MSDMarkwort.Kicad.sln --configuration Release --no-build --verbosity normal
     - name: Packing
+      if: github.ref == 'refs/heads/master'
       run: dotnet pack src/MSDMarkwort.Kicad.sln --configuration Release --no-build
     - name: Publish
       if: github.ref == 'refs/heads/main'

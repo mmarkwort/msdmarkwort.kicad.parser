@@ -2,32 +2,35 @@
 
 Simple .NET based parser for KICAD files. Currently supported format is:
 
-- pcbnew since file version 20231014
+- pcbnew since file version 20200829
+- eeschema since file version 20200829
 
 ## How to use
+
+### Eeschema
 
 Add nuget package to your project:
 
 `
-dotnet add package MSDMarkwort.Kicad.Parser.PcbNew
+dotnet add package MSDMarkwort.Kicad.Parser.EESchema
 `
 
-### Example with file on disk
+#### Example with file on disk
 
 ```
-var parser = new PcbNewParser();
-var parserResult = parser.Parse("myproject.kicad_pcb");
+var parser = new EESchemaParser();
+var parserResult = parser.Parse("myproject.kicad_sch");
 
 if(parser.Success)
 {
-    var pcb = parser.Result;
-    var title = parser.TitleBlock.Title;
+    var eeschema = parser.Result;
+    var title = eeschema.TitleBlock.Title;
     
    //... 
 }
 ```
 
-### Example using streams
+#### Example using streams
 
 ```
 var stream = new MemoryStream(...)
@@ -37,7 +40,46 @@ var parserResult = parser.Parse(stream);
 if(parser.Success)
 {
     var pcb = parser.Result;
-    var title = parser.TitleBlock.Title;
+    var title = eeschema.TitleBlock.Title;
+    
+   //... 
+}
+```
+
+### Pcbnew
+
+Add nuget package to your project:
+
+`
+dotnet add package MSDMarkwort.Kicad.Parser.PcbNew
+`
+
+#### Example with file on disk
+
+```
+var parser = new PcbNewParser();
+var parserResult = parser.Parse("myproject.kicad_pcb");
+
+if(parser.Success)
+{
+    var pcb = parser.Result;
+    var title = pcb.TitleBlock.Title;
+    
+   //... 
+}
+```
+
+#### Example using streams
+
+```
+var stream = new MemoryStream(...)
+var parser = new PcbNewParser();
+var parserResult = parser.Parse(stream);
+
+if(parser.Success)
+{
+    var pcb = parser.Result;
+    var title = pcb.TitleBlock.Title;
     
    //... 
 }
@@ -47,5 +89,4 @@ if(parser.Success)
 
 - Enums currently treated as strings
 - No writer yet
-- Only pcbnew support yet
-
+- Please note that some properties are still missing. If you identify one, please let me know

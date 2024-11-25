@@ -1,14 +1,17 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
-using MSDMarkwort.Kicad.Parser.PcbNew.Models.Common;
+using MSDMarkwort.Kicad.Parser.Model.Common;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartFp
 {
-    public class FpPoly : FpBase, IPts
+    public class FpPoly : FpBase
     {
-        [KicadElement("pts")]
+        [KicadParserComplexSymbol("pts")]
         public MultiPointPositionXY Pts { get; set; } = new MultiPointPositionXY();
 
-        [KicadElement("fill")]
+        [KicadParserSymbol("fill")]
         public string Fill { get; set; }
+
+        [KicadParserSymbol("width")]
+        public double Width { get; set; }
     }
 }

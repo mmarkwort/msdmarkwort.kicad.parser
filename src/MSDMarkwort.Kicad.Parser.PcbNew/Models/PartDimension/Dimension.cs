@@ -1,34 +1,40 @@
-﻿using MSDMarkwort.Kicad.Parser.PcbNew.Models.Common;
-using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr;
-using System;
+﻿using System;
 using MSDMarkwort.Kicad.Parser.Base.Attributes;
+using MSDMarkwort.Kicad.Parser.Model.Common;
+using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartDimension
 {
-    public class Dimension : IPts
+    public class Dimension
     {
-        [KicadElement("type")]
+        [KicadParserSymbol("type")]
         public string Type { get; set; }
 
-        [KicadElement("layer")]
+        [KicadParserSymbol("layer")]
         public string Layer { get; set; }
 
-        [KicadElement("uuid")]
+        [KicadParserSymbol("uuid")]
         public Guid Uuid { get; set; }
 
-        [KicadElement("pts")]
+        [KicadParserSymbol("tstamp")]
+        public Guid TStamp { get; set; }
+
+        [KicadParserComplexSymbol("pts")]
         public MultiPointPositionXY Pts { get; set; } = new MultiPointPositionXY();
 
-        [KicadElement("height")]
+        [KicadParserSymbol("height")]
         public double Height { get; set; }
 
-        [KicadElement("gr_text")]
+        [KicadParserSymbol("orientation")]
+        public double Orientation { get; set; }
+
+        [KicadParserComplexSymbol("gr_text")]
         public GrText GrText { get; set; } = new GrText();
 
-        [KicadElement("format")]
+        [KicadParserComplexSymbol("format")]
         public Format Format { get; set; } = new Format();
 
-        [KicadElement("style")]
+        [KicadParserComplexSymbol("style")]
         public Style Style { get; set; } = new Style();
     }
 }

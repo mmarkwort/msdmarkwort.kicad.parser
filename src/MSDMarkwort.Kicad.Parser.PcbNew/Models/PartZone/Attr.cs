@@ -4,7 +4,7 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartZone
 {
     public class Attr
     {
-        [KicadElement("teardrop")]
+        [KicadParserComplexSymbol("teardrop")]
         public Teardrop Teardrop { get; set; } = new Teardrop();
     }
 }
