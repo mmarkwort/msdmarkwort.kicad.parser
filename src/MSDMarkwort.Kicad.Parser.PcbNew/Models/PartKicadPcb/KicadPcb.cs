@@ -1,4 +1,5 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
+using MSDMarkwort.Kicad.Parser.Model.Common;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartDimension;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartProperty;

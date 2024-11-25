@@ -21,5 +21,8 @@ namespace MSDMarkwort.Kicad.Parser.Model.Common
 
         [KicadParserSymbol("italic")]
         public bool Italic { get; set; }
+
+        [KicadParserComplexSymbol("color")]
+        public Color Color { get; set; } = new Color();
     }
 }

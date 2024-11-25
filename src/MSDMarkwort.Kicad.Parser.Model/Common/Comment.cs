@@ -1,6 +1,6 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
 
-namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb
+namespace MSDMarkwort.Kicad.Parser.Model.Common
 {
     public class Comment
     {

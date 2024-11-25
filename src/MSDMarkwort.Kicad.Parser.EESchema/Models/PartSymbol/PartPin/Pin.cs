@@ -1,5 +1,6 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
 using MSDMarkwort.Kicad.Parser.Model.Common;
+using System;
 
 namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartPin
 {
@@ -14,6 +15,9 @@ namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartPin
         [KicadParserComplexSymbol("at")]
         public PositionAt At { get; set; } = new PositionAt();
 
+        [KicadParserSymbol("uuid")]
+        public Guid Uuid { get; set; }
+
         [KicadParserSymbol("hide", parameterMappings: "hide")]
         public bool Hide { get; set; }
 
@@ -26,5 +30,7 @@ namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartPin
         [KicadParserComplexSymbol("number")]
         public PinNumber PinNumber { get; set; } = new PinNumber();
 
+        [KicadParserComplexSymbol("effects")]
+        public Effects Effects { get; set; } = new Effects();
     }
 }

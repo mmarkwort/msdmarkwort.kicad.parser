@@ -1,10 +1,12 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
 using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartInstances;
-using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartInstances.PartProject;
 using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartPin;
 using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartProperty;
 using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartShapes;
+using MSDMarkwort.Kicad.Parser.Model.Common;
 using System;
+using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartDefaultInstance;
+using MSDMarkwort.Kicad.Parser.EESchema.PartText;
 
 namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol
 {
@@ -18,6 +20,12 @@ namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol
 
         [KicadParserSymbol("lib_id")]
         public string LibId { get; set; }
+
+        [KicadParserSymbol("lib_name")]
+        public string LibName { get; set; }
+
+        [KicadParserComplexSymbol("at")]
+        public PositionAt At { get; set; } = new PositionAt();
 
         [KicadParserSymbol("pin_numbers")]
         public string PinNumbers { get; set; }
@@ -43,6 +51,12 @@ namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol
         [KicadParserSymbol("dnp")]
         public bool Dnp { get; set; }
 
+        [KicadParserSymbol("mirror")]
+        public string Mirror { get; set; }
+
+        [KicadParserSymbol("fields_autoplaced")]
+        public bool FieldsAutoplaced { get; set; }
+
         [KicadParserList("polyline", KicadParserListAddType.Complex)]
         public PolylineCollection Polylines { get; set; } = new PolylineCollection();
 
@@ -52,8 +66,17 @@ namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol
         [KicadParserList("circle", KicadParserListAddType.Complex)]
         public CircleCollection Circles { get; set; } = new CircleCollection();
 
+        [KicadParserList("arc", KicadParserListAddType.Complex)]
+        public ArcCollection Arcs { get; set; } = new ArcCollection();
+
+        [KicadParserList("text", KicadParserListAddType.Complex)]
+        public TextCollection Texts { get; set; } = new TextCollection();
+
         [KicadParserSymbol("embedded_fonts")]
         public bool EmbeddedFonts { get; set; }
+
+        [KicadParserComplexSymbol("default_instance")]
+        public DefaultInstance DefaultInstance { get; set; } = new DefaultInstance();
 
         [KicadParserList("property", KicadParserListAddType.Complex)]
         public PropertyCollection Properties { get; set; } = new PropertyCollection();

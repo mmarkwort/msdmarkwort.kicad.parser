@@ -10,7 +10,10 @@ namespace MSDMarkwort.Kicad.Parser.Model.Common
         [KicadParserComplexSymbol("justify")]
         public Justify Justify { get; set; } = new Justify();
 
-        [KicadParserSymbol("hide")]
+        [KicadParserSymbol("hide", parameterMappings: "hide")]
         public bool Hide { get; set; }
+
+        [KicadParserSymbol("href")]
+        public string Href { get; set; }
     }
 }

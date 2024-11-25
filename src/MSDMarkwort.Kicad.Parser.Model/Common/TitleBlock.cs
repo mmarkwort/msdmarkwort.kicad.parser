@@ -1,6 +1,7 @@
-﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
+﻿using System.Collections.Generic;
+using MSDMarkwort.Kicad.Parser.Base.Attributes;
 
-namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartKicadSch
+namespace MSDMarkwort.Kicad.Parser.Model.Common
 {
     public class TitleBlock
     {
@@ -13,12 +14,10 @@ namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartKicadSch
         [KicadParserSymbol("rev")]
         public string Revision { get; set; }
 
-        /*
         [KicadParserSymbol("company")]
         public string Company { get; set; }
 
         [KicadParserList("comment", KicadParserListAddType.Complex)]
         public List<Comment> Comments { get; set; } = new List<Comment>();
-        */
     }
 }

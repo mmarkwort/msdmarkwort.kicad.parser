@@ -3,8 +3,6 @@ using MSDMarkwort.Kicad.Parser.Base.Parser.Pcb;
 using MSDMarkwort.Kicad.Parser.Base.Parser.Reflection;
 using MSDMarkwort.Kicad.Parser.Base.Parser.Result;
 using MSDMarkwort.Kicad.Parser.EESchema.Models.PartKicadSch;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using MSDMarkwort.Kicad.Parser.Model.Common;
 
 namespace MSDMarkwort.Kicad.Parser.EESchema

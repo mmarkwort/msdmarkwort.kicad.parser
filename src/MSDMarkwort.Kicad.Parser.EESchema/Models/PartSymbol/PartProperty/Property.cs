@@ -11,6 +11,9 @@ namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartProperty
         [KicadParameter(1)]
         public string Value { get; set; }
 
+        [KicadParserSymbol("id")]
+        public int Id { get; set; }
+
         [KicadParserComplexSymbol("at")]
         public PositionAt PositionAt { get; set; } = new PositionAt();
 

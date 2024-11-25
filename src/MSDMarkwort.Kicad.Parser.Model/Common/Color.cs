@@ -14,6 +14,6 @@ namespace MSDMarkwort.Kicad.Parser.Model.Common
         public int Blue { get; set; }
 
         [KicadParameter(3)]
-        public int Alpha { get; set; }
+        public double Alpha { get; set; }
     }
 }

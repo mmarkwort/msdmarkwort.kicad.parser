@@ -1,20 +1,14 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
 
-namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartInstances.PartProject.PartPath
+namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartDefaultInstance
 {
-    public class Path
+    public class DefaultInstance
     {
-        [KicadParameter(0)]
-        public string AbsolutePath { get; set; }
-
         [KicadParserSymbol("reference")]
         public string Reference { get; set; }
 
         [KicadParserSymbol("unit")]
         public int Unit { get; set; }
-
-        [KicadParserSymbol("page")]
-        public string Page { get; set; }
 
         [KicadParserSymbol("value")]
         public string Value { get; set; }

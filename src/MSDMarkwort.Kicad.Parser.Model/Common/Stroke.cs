@@ -9,5 +9,8 @@ namespace MSDMarkwort.Kicad.Parser.Model.Common
 
         [KicadParserSymbol("type")]
         public string Type { get; set; }
+
+        [KicadParserComplexSymbol("color")]
+        public Color Color { get; set; } = new Color();
     }
 }
