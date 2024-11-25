@@ -1,12 +1,11 @@
-﻿using MSDMarkwort.Kicad.Parser.PcbNew.Models.Common;
+﻿using System;
+using MSDMarkwort.Kicad.Parser.Base.Attributes;
+using MSDMarkwort.Kicad.Parser.Model.Common;
+using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartClass;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartFp;
-using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartModel;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartPad;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartProperty;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb;
-using System;
-using MSDMarkwort.Kicad.Parser.Base.Attributes;
-using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartClass;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartZone;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint
@@ -98,7 +97,7 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint
         public bool EmbeddedFonts { get; set; }
 
         [KicadParserComplexSymbol("model")]
-        public Model Model { get; set; } = new Model();
+        public PartModel.Model Model { get; set; } = new PartModel.Model();
 
         [KicadParserList("group", KicadParserListAddType.Complex)]
         public GroupCollection Groups { get; set; } = new GroupCollection();

@@ -33,11 +33,11 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Reflection
         private readonly Dictionary<Type, SymbolPropertyInfo[]> _symbolPropertyCache = new Dictionary<Type, SymbolPropertyInfo[]>();
         private readonly Dictionary<Type, SymbolParameterInfo[]> _symbolParameterCache = new Dictionary<Type, SymbolParameterInfo[]>();
 
-        public void LoadCache(Assembly typeAssembly)
+        public void LoadCache(Assembly[] typeAssemblies)
         {
             _symbolPropertyCache.Clear();
 
-            foreach (var type in typeAssembly.GetTypes())
+            foreach (var type in typeAssemblies.SelectMany(a => a.GetTypes()))
             {
                 var symbolPropertyInfos = new List<SymbolPropertyInfo>();
                 foreach (var property in type.GetProperties())

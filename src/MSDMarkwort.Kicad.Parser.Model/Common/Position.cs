@@ -1,8 +1,8 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
 
-namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
+namespace MSDMarkwort.Kicad.Parser.Model.Common
 {
-    public class PositionXYZ
+    public class Position
     {
         [KicadParameter(0)]
         public double X { get; set; }
@@ -10,12 +10,9 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
         [KicadParameter(1)]
         public double Y { get; set; }
 
-        [KicadParameter(2)]
-        public double Z { get; set; }
-
         public override string ToString()
         {
-            return $"{X}/{Y}/{Z}";
+            return $"{X}/{Y}";
         }
     }
 }

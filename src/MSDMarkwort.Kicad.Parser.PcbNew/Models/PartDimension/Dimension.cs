@@ -1,11 +1,11 @@
-﻿using MSDMarkwort.Kicad.Parser.PcbNew.Models.Common;
-using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr;
-using System;
+﻿using System;
 using MSDMarkwort.Kicad.Parser.Base.Attributes;
+using MSDMarkwort.Kicad.Parser.Model.Common;
+using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartDimension
 {
-    public class Dimension : IPts
+    public class Dimension
     {
         [KicadParserSymbol("type")]
         public string Type { get; set; }

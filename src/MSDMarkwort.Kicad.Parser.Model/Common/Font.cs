@@ -1,6 +1,6 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
 
-namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
+namespace MSDMarkwort.Kicad.Parser.Model.Common
 {
     public class Font
     {
@@ -18,5 +18,8 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
 
         [KicadParserSymbol("bold")]
         public bool Bold { get; set; }
+
+        [KicadParserSymbol("italic")]
+        public bool Italic { get; set; }
     }
 }

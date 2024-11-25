@@ -1,6 +1,6 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
 
-namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
+namespace MSDMarkwort.Kicad.Parser.Model.Common
 {
     public class Effects
     {
@@ -9,5 +9,8 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.Common
 
         [KicadParserComplexSymbol("justify")]
         public Justify Justify { get; set; } = new Justify();
+
+        [KicadParserSymbol("hide")]
+        public bool Hide { get; set; }
     }
 }

@@ -15,6 +15,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSDMarkwort.Kicad.Parser.Base\MSDMarkwort.Kicad.Parser.Base.csproj" />
+    <ProjectReference Include="..\MSDMarkwort.Kicad.Parser.Model\MSDMarkwort.Kicad.Parser.Model.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\README.md" Link="README.md" Pack="true" PackagePath="" />
@@ -22,5 +23,8 @@
   <ItemGroup>
     <!-- For GitHub -->
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Common\" />
   </ItemGroup>
 </Project>

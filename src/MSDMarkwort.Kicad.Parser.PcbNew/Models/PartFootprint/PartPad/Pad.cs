@@ -1,10 +1,9 @@
-﻿using MSDMarkwort.Kicad.Parser.PcbNew.Models.Common;
-using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using MSDMarkwort.Kicad.Parser.Base.Attributes;
+using MSDMarkwort.Kicad.Parser.Model.Common;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartPad.PartPadStack;
-using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr;
+using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartPad
 {
