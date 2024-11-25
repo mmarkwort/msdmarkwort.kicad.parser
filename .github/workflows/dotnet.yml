@@ -36,7 +36,7 @@ jobs:
     - name: Test
       run: dotnet test src/MSDMarkwort.Kicad.sln --configuration Release --no-build --verbosity normal
     - name: Packing
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/main'
       run: dotnet pack src/MSDMarkwort.Kicad.sln --configuration Release --no-build
     - name: Publish
       if: github.ref == 'refs/heads/main'
