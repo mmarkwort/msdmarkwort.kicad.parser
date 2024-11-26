@@ -6,10 +6,8 @@ using MSDMarkwort.Kicad.Parser.Base.Parser.Reflection;
 using MSDMarkwort.Kicad.Parser.Base.Parser.Result;
 using MSDMarkwort.Kicad.Parser.Base.Parser.SExpression.Models;
 using MSDMarkwort.Kicad.Parser.Model.Common;
-using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartPad;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartKicadPcb;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartLayers;
-using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartSetup;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew
 {

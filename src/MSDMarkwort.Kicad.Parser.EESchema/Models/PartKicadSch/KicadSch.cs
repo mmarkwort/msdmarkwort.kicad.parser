@@ -1,22 +1,22 @@
-﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
-using System;
+﻿using System;
+using MSDMarkwort.Kicad.Parser.Base.Attributes;
 using MSDMarkwort.Kicad.Parser.EESchema.Models.PartBus;
 using MSDMarkwort.Kicad.Parser.EESchema.Models.PartBusEntry;
-using MSDMarkwort.Kicad.Parser.EESchema.Models.PartJunction;
-using MSDMarkwort.Kicad.Parser.EESchema.Models.PartLibSymbols;
-using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol;
-using MSDMarkwort.Kicad.Parser.EESchema.Models.PartWire;
-using MSDMarkwort.Kicad.Parser.EESchema.PartLabel;
-using MSDMarkwort.Kicad.Parser.EESchema.PartText;
-using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartInstances;
-using MSDMarkwort.Kicad.Parser.Model.Common;
-using MSDMarkwort.Kicad.Parser.EESchema.Models.PartNoConnect;
-using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartShapes;
 using MSDMarkwort.Kicad.Parser.EESchema.Models.PartHierarchicalLabel;
 using MSDMarkwort.Kicad.Parser.EESchema.Models.PartImage;
+using MSDMarkwort.Kicad.Parser.EESchema.Models.PartJunction;
+using MSDMarkwort.Kicad.Parser.EESchema.Models.PartLibSymbols;
+using MSDMarkwort.Kicad.Parser.EESchema.Models.PartNoConnect;
 using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSheet;
-using MSDMarkwort.Kicad.Parser.EESchema.PartTextBox;
+using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol;
+using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartInstances;
+using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartShapes;
+using MSDMarkwort.Kicad.Parser.EESchema.Models.PartWire;
 using MSDMarkwort.Kicad.Parser.EESchema.PartGlobalLabel;
+using MSDMarkwort.Kicad.Parser.EESchema.PartLabel;
+using MSDMarkwort.Kicad.Parser.EESchema.PartText;
+using MSDMarkwort.Kicad.Parser.EESchema.PartTextBox;
+using MSDMarkwort.Kicad.Parser.Model.Common;
 
 namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartKicadSch
 {

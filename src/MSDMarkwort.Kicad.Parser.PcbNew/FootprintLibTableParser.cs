@@ -3,7 +3,6 @@ using MSDMarkwort.Kicad.Parser.Base.Parser.Pcb;
 using MSDMarkwort.Kicad.Parser.Base.Parser.Reflection;
 using MSDMarkwort.Kicad.Parser.Model.Common;
 using MSDMarkwort.Kicad.Parser.Model.PartLibraryTable;
-using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartLibFootprint;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew
 {

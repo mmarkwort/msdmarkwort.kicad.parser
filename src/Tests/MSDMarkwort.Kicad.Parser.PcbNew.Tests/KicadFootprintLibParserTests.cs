@@ -181,10 +181,10 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Tests
         [TestCase("../../../../TestProjects/tiny_tapeout/tinytapeout-kicad-libs/footprints/TinyTapeout.pretty/WURTH_632723X00011.kicad_mod")]
         [TestCase("../../../../TestProjects/tiny_tapeout/tinytapeout-kicad-libs/footprints/ttlib.pretty/SW_E-Switch_EG1271_SPDT.kicad_mod")]
         [TestCase("../../../../TestProjects/tiny_tapeout/tinytapeout-kicad-libs/footprints/ttlib.pretty/TestPoint_Keystone_5019_Minature.kicad_mod")]
-        public void ParseTest(string inputFootprintLib, bool shouldParse = true, int warningsAllowed = 0)
+        public void ParseTest(string inputFootprintLibTable, bool shouldParse = true, int warningsAllowed = 0)
         {
             var parser = new FootprintLibParser();
-            var parserResult = parser.Parse(inputFootprintLib);
+            var parserResult = parser.Parse(inputFootprintLibTable);
 
             Assert.That(parserResult.Success, Is.EqualTo(shouldParse));
             Assert.That(parserResult.Warnings.Length, Is.EqualTo(warningsAllowed));

@@ -1,6 +1,6 @@
-﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
+﻿using System;
+using MSDMarkwort.Kicad.Parser.Base.Attributes;
 using MSDMarkwort.Kicad.Parser.Model.Common;
-using System;
 
 namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartWire
 {

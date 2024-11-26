@@ -1,12 +1,12 @@
-﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
+﻿using System;
+using MSDMarkwort.Kicad.Parser.Base.Attributes;
+using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartDefaultInstance;
 using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartInstances;
 using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartPin;
 using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartProperty;
 using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartShapes;
-using MSDMarkwort.Kicad.Parser.Model.Common;
-using System;
-using MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartDefaultInstance;
 using MSDMarkwort.Kicad.Parser.EESchema.PartText;
+using MSDMarkwort.Kicad.Parser.Model.Common;
 
 namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol
 {
