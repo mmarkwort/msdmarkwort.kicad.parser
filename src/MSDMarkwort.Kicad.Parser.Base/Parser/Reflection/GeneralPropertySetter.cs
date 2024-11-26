@@ -1,9 +1,9 @@
-﻿using MSDMarkwort.Kicad.Parser.Base.Parser.Reflection.PropertySetter;
-using MSDMarkwort.Kicad.Parser.Base.Parser.Result;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using MSDMarkwort.Kicad.Parser.Base.Parser.Reflection.PropertySetter;
+using MSDMarkwort.Kicad.Parser.Base.Parser.Result;
 
 namespace MSDMarkwort.Kicad.Parser.Base.Parser.Reflection
 {

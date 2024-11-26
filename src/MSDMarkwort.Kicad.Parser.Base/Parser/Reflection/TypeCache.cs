@@ -1,8 +1,8 @@
-﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using MSDMarkwort.Kicad.Parser.Base.Attributes;
 
 namespace MSDMarkwort.Kicad.Parser.Base.Parser.Reflection
 {
