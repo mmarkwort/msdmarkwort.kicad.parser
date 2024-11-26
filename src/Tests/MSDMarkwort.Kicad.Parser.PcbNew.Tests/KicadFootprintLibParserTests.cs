@@ -183,7 +183,7 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Tests
         [TestCase("../../../../TestProjects/tiny_tapeout/tinytapeout-kicad-libs/footprints/ttlib.pretty/TestPoint_Keystone_5019_Minature.kicad_mod")]
         public void ParseTest(string inputFootprintLib, bool shouldParse = true, int warningsAllowed = 0)
         {
-            var parser = new FootprintLibTableParser();
+            var parser = new FootprintLibParser();
             var parserResult = parser.Parse(inputFootprintLib);
 
             Assert.That(parserResult.Success, Is.EqualTo(shouldParse));

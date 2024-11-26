@@ -2,33 +2,33 @@
 using MSDMarkwort.Kicad.Parser.Base.Parser.Pcb;
 using MSDMarkwort.Kicad.Parser.Base.Parser.Reflection;
 using MSDMarkwort.Kicad.Parser.Model.Common;
-using MSDMarkwort.Kicad.Parser.Model.PartLibraryTable;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartLibFootprint;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew
 {
-    public class FootprintLibTableParserRootModel : KicadRootModel<LibraryTable>
+    public class FootprintLibParserRootModel : KicadRootModel<LibFootprint>
     {
-        [KicadParserComplexSymbol("fp_lib_table")]
-        public override LibraryTable Root { get; set; } = new LibraryTable();
+        [KicadParserComplexSymbol("footprint")]
+        [KicadParserComplexSymbol("module")]
+        public override LibFootprint Root { get; set; } = new LibFootprint();
     }
 
-    public class FootprintLibTableParser : KicadBaseParser<LibraryTable, FootprintLibTableParserRootModel>
+    public class FootprintLibParser : KicadBaseParser<LibFootprint, FootprintLibParserRootModel>
     {
         private static readonly TypeCache StaticTypeCache = new TypeCache();
 
         protected int MinimumSupportedVersion = 6;
 
-        static FootprintLibTableParser()
+        static FootprintLibParser()
         {
             StaticTypeCache.LoadCache(new[] { typeof(FootprintLibParser).Assembly, typeof(Font).Assembly });
         }
 
-        public FootprintLibTableParser() : base(StaticTypeCache)
+        public FootprintLibParser() : base(StaticTypeCache)
         {
         }
 
-        protected override bool CheckVersion(LibraryTable instance)
+        protected override bool CheckVersion(LibFootprint instance)
         {
             return true;
         }

@@ -1,9 +1,13 @@
-# KICAD File Parser (.NET based)
+# KICAD File Parser (.NET 8.0 based)
 
-Simple .NET based parser for KICAD files. Currently supported format is:
+Simple .NET based parser for KICAD files. Currently supported formats are:
 
-- pcbnew since file version 20200829
-- eeschema since file version 20200829
+- pcbnew
+- kicad_mod
+- fp-lib-table
+- eeschema
+- kicad_sym
+- sym-lib-table
 
 ## How to use
 
@@ -14,6 +18,8 @@ Add nuget package to your project:
 `
 dotnet add package MSDMarkwort.Kicad.Parser.EESchema
 `
+
+or via Visual Studio Package Manager.
 
 #### Example with file on disk
 
@@ -41,6 +47,36 @@ if(parser.Success)
 {
     var pcb = parser.Result;
     var title = eeschema.TitleBlock.Title;
+    
+   //... 
+}
+```
+
+#### Symbol libary & symbols
+
+With the Eeschema library it is also possible to load the symbol library table file and symbol files.
+
+```
+var parser = new SymLibTableParser();
+var parserResult = parser.Parse("sym-lib-table");
+
+if(parser.Success)
+{
+    var symLib = parser.Result;
+    var version = symLib.Version;
+    
+   //... 
+}
+```
+
+```
+var parser = new SymLibParser();
+var parserResult = parser.Parse("mysymbol.kicad_sym");
+
+if(parser.Success)
+{
+    var symbol = parser.Result;
+    var version = symbol.Version;
     
    //... 
 }
@@ -85,8 +121,67 @@ if(parser.Success)
 }
 ```
 
-## Limitations
+#### Footprint libary & footprints
 
-- Enums currently treated as strings
-- No writer yet
-- Please note that some properties are still missing. If you identify one, please let me know
+With the Pcbnew library it is also possible to load the fottprint library table file and footprint files.
+
+```
+var parser = new FootprintLibTableParser();
+var parserResult = parser.Parse("fp-lib-table");
+
+if(parser.Success)
+{
+    var footprintLib = parser.Result;
+    var version = footprintLib.Version;
+    
+   //... 
+}
+```
+
+```
+var parser = new FootprintLibParser();
+var parserResult = parser.Parse("mysymbol.kicad_mod");
+
+if(parser.Success)
+{
+    var footprint = parser.Result;
+    var version = footprint.Version;
+    
+   //... 
+}
+```
+
+## FAQ
+
+### The parser result property `Success` is false
+
+In this case parsing was not successful. May be due to a bug in this libray or an unsupported file.
+
+### What is the minimum version of Kicad files that can be parsed?
+
+Minimum file version of `kicad_sch`, `kicad_pcb`, `kicad_sym` & `kicad_mod` is `20200829` which should be Kicad 6.0.
+
+### What does the `Warning` property of the parser result mean?
+
+A warning is generated if,
+- a property is missing
+- a property has the wrong type.
+- file version is too old
+
+Any warning except the version warning is interesstant to me. Please let me know.
+
+### Will Kicad legacy versions be supported?
+
+No.
+
+### Will there be writers in the future
+
+Yes.
+
+### Are enums currently supported?
+
+No, but that is planned.
+
+### Can the libary parse the `kicad_pro` format
+
+No, but in future.
