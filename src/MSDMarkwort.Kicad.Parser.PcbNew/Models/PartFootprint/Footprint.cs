@@ -66,6 +66,9 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint
         [KicadParserSymbol("solder_paste_margin")]
         public double SolderPasteMargin { get; set; }
 
+        [KicadParserSymbol("solder_paste_ratio")]
+        public double SolderPasteRatio { get; set; }
+
         [KicadParserSymbol("attr")]
         public string Attr { get; set; }
 

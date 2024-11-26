@@ -19,5 +19,8 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartModel
 
         [KicadParserComplexSymbol("rotate")]
         public PositionXYZProxy Rotate { get; set; } = new PositionXYZProxy();
+
+        [KicadParserComplexSymbol("at")]
+        public PositionXYZProxy At { get; set; } = new PositionXYZProxy();
     }
 }

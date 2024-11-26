@@ -70,6 +70,9 @@ namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartFootprint.PartPad
         [KicadParserSymbol("thermal_bridge_width")]
         public double ThermalBridgeWidth { get; set; }
 
+        [KicadParserSymbol("thermal_width")]
+        public double ThermalWidth { get; set; }
+
         [KicadParserSymbol("thermal_gap")]
         public double ThermalGap { get; set; }
 

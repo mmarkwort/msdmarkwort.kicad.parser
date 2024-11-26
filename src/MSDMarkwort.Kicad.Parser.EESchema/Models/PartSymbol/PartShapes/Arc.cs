@@ -19,5 +19,8 @@ namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol.PartShapes
 
         [KicadParserComplexSymbol("fill")]
         public Fill Fill { get; set; } = new Fill();
+
+        [KicadParserComplexSymbol("radius")]
+        public Radius Radius { get; set; } = new Radius();
     }
 }

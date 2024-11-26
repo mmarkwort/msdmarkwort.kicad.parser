@@ -24,6 +24,9 @@ namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartSymbol
         [KicadParserSymbol("lib_name")]
         public string LibName { get; set; }
 
+        [KicadParserSymbol("extends")]
+        public string Extends { get; set; }
+
         [KicadParserComplexSymbol("at")]
         public PositionAt At { get; set; } = new PositionAt();
 
