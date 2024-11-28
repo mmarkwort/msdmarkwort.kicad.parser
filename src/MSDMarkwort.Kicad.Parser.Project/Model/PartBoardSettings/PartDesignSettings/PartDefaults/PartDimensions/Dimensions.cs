@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartDimensions
+namespace MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartDefaults.PartDimensions
 {
     public class Dimensions
     {

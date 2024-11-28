@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartPads
+namespace MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartDefaults.PartPads
 {
     public class Pads
     {

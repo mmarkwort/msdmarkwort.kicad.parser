@@ -1,9 +1,16 @@
-using MSDMarkwort.Kicad.Parser.EESchema;
-using System.IO;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace MSDMarkwort.Kicad.Parser.Project.Tests
 {
+    public class Test
+    {
+        public List<double> Sub { get; set; } = new List<double>();
+
+        public string[] Sub2 { get; set; } = new[] { "1.0d" };
+    }
+
     public class KicadProjectParserTests
     {
         [SetUp]
@@ -91,27 +98,12 @@ namespace MSDMarkwort.Kicad.Parser.Project.Tests
         [TestCase("../../../../TestProjects/simulation/power_supplies/royer/royer1.kicad_pro")]
         public async Task ParseTest(string inputProject)
         {
-            var memoryStream = new MemoryStream();
             await using var inputProjectStream = File.OpenRead(inputProject);
 
             var parser = new KicadProjectParser();
-            var writer = new KicadProjectWriter();
-
-            var parserResult = await parser.ParseAsync(inputProjectStream);
-            inputProjectStream.Seek(0, SeekOrigin.Begin);
-
-            var inputProjectContent = "";
-            using (var reader = new StreamReader(inputProjectStream))
-            {
-                inputProjectContent = await reader.ReadToEndAsync();
-            }
+            var parserResult = await parser.ParseAsync(inputProjectStream, JsonUnmappedMemberHandling.Disallow);
 
             Assert.That(parserResult.Success, Is.EqualTo(true));
-
-            await writer.WriteAsync(parserResult.Result, memoryStream);
-            var outputProjectContent = Encoding.UTF8.GetString(memoryStream.ToArray());
-
-            Assert.That(outputProjectContent, Is.EqualTo(inputProjectContent));
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartZones
+namespace MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartDefaults.PartZones
 {
     public class Zones
     {

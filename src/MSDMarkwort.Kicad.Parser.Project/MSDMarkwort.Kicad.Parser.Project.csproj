@@ -24,8 +24,4 @@
   <ItemGroup>
     <ProjectReference Include="..\MSDMarkwort.Kicad.Parser.Base\MSDMarkwort.Kicad.Parser.Base.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\PartSchematicSettings\" />
-    <Folder Include="Model\PartErcSettings\" />
-  </ItemGroup>
 </Project>

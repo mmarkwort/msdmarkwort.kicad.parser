@@ -1,9 +1,9 @@
 ﻿using System.Text.Json.Serialization;
-using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartDimensions;
-using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartPads;
-using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartZones;
+using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartDefaults.PartDimensions;
+using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartDefaults.PartPads;
+using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartDefaults.PartZones;
 
-namespace MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings
+namespace MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartDefaults
 {
     public class DefaultSettings
     {
