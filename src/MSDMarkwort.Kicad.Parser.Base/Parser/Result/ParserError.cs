@@ -2,6 +2,6 @@
 {
     public class ParserError
     {
-        public System.Exception Exception { get; internal set; }
+        public System.Exception Exception { get; set; }
     }
 }

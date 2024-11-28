@@ -61,10 +61,10 @@ namespace MSDMarkwort.Kicad.Parser.EESchema.Tests
         [TestCase("../../../../TestProjects/simulation/sallen_key/sym-lib-table")]
         [TestCase("../../../../TestProjects/simulation/v_i_sources/sym-lib-table")]
         [TestCase("../../../../TestProjects/simulation/power_supplies/boost/sym-lib-table")]
-        public void ParseTest(string inputSymLib, bool shouldParse = true, int warningsAllowed = 0)
+        public void ParseTest(string inputSymLibTable, bool shouldParse = true, int warningsAllowed = 0)
         {
             var parser = new SymLibTableParser();
-            var parserResult = parser.Parse(inputSymLib);
+            var parserResult = parser.Parse(inputSymLibTable);
 
             Assert.That(parserResult.Success, Is.EqualTo(shouldParse));
             Assert.That(parserResult.Warnings.Length, Is.EqualTo(warningsAllowed));

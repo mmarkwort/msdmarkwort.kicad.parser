@@ -2,6 +2,7 @@
 
 Simple .NET based parser for KICAD files. Currently supported formats are:
 
+- project
 - pcbnew
 - kicad_mod
 - fp-lib-table
@@ -10,6 +11,29 @@ Simple .NET based parser for KICAD files. Currently supported formats are:
 - sym-lib-table
 
 ## How to use
+
+### Project
+
+Add nuget package to your project:
+
+`
+dotnet add package MSDMarkwort.Kicad.Parser.Project
+`
+
+or via Visual Studio Package Manager.
+
+#### Example with file on disk
+
+var parser = new KicadProjectParser();
+var parserResult = parser.Parse("myproject.kicad_pro");
+
+if(parser.Success)
+{
+    var project = parser.Result;   
+    
+   //... 
+}
+
 
 ### Eeschema
 
@@ -181,7 +205,3 @@ Yes.
 ### Are enums currently supported?
 
 No, but that is planned.
-
-### Can the libary parse the `kicad_pro` format
-
-No, but in future.
