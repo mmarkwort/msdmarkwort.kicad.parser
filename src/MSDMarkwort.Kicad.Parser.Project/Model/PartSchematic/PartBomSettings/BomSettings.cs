@@ -1,6 +1,6 @@
-﻿using MSDMarkwort.Kicad.Parser.Project.Model.PartSchematic.PartBomSettings.PartFields;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using MSDMarkwort.Kicad.Parser.Project.Model.PartSchematic.PartBomSettings.PartFields;
 
 namespace MSDMarkwort.Kicad.Parser.Project.Model.PartSchematic.PartBomSettings
 {

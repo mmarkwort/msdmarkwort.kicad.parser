@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartDiffPairDimensions;
+﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartRuleSeverities;
-using MSDMarkwort.Kicad.Parser.Project.Model.PartCommon;
 using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartDefaults;
-using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartRules;
 using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartDefaults.PartTearDropOptions;
 using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartDefaults.PartTearDropParameters;
+using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartDiffPairDimensions;
+using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartRules;
+using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartRuleSeverities;
 using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartTuningPatternSettings;
 using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings.PartViaDimensions;
+using MSDMarkwort.Kicad.Parser.Project.Model.PartCommon;
 
 namespace MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings
 {

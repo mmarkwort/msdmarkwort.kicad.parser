@@ -1,8 +1,8 @@
-﻿using MSDMarkwort.Kicad.Parser.Project.Model.PartProject;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using MSDMarkwort.Kicad.Parser.Project.Model.PartProject;
 
 namespace MSDMarkwort.Kicad.Parser.Project
 {

@@ -1,16 +1,7 @@
-using System.Text;
-using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace MSDMarkwort.Kicad.Parser.Project.Tests
 {
-    public class Test
-    {
-        public List<double> Sub { get; set; } = new List<double>();
-
-        public string[] Sub2 { get; set; } = new[] { "1.0d" };
-    }
-
     public class KicadProjectParserTests
     {
         [SetUp]

@@ -1,5 +1,5 @@
-﻿using MSDMarkwort.Kicad.Parser.Project.Model.PartCommon;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
+using MSDMarkwort.Kicad.Parser.Project.Model.PartCommon;
 
 namespace MSDMarkwort.Kicad.Parser.Project.Model.PartSchematic.PartNgSpice
 {

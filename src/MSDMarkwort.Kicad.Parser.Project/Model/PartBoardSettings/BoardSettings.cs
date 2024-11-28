@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings;
 using System.Text.Json.Serialization;
+using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartDesignSettings;
 using MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings.PartIpc2581;
 
 namespace MSDMarkwort.Kicad.Parser.Project.Model.PartBoardSettings
