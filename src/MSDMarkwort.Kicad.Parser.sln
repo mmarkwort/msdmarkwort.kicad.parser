@@ -29,6 +29,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSDMarkwort.Kicad.Parser.Pr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSDMarkwort.Kicad.Parser.Project.Tests", "Tests\MSDMarkwort.Kicad.Parser.Project.Tests\MSDMarkwort.Kicad.Parser.Project.Tests.csproj", "{F2330FC2-F8B7-4E89-9F3F-47FC54FBC45B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSDMarkwort.Kicad.Parser.Base.Tests", "Tests\MSDMarkwort.Kicad.Parser.Base.Tests\MSDMarkwort.Kicad.Parser.Base.Tests.csproj", "{B5E8D9F1-2A3C-4567-8901-234567890ABC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSDMarkwort.Kicad.Parser.Model.Tests", "Tests\MSDMarkwort.Kicad.Parser.Model.Tests\MSDMarkwort.Kicad.Parser.Model.Tests.csproj", "{C6F9E0A2-3B4D-5678-9012-345678901DEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +71,14 @@ Global
 		{F2330FC2-F8B7-4E89-9F3F-47FC54FBC45B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2330FC2-F8B7-4E89-9F3F-47FC54FBC45B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2330FC2-F8B7-4E89-9F3F-47FC54FBC45B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5E8D9F1-2A3C-4567-8901-234567890ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5E8D9F1-2A3C-4567-8901-234567890ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5E8D9F1-2A3C-4567-8901-234567890ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5E8D9F1-2A3C-4567-8901-234567890ABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6F9E0A2-3B4D-5678-9012-345678901DEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6F9E0A2-3B4D-5678-9012-345678901DEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6F9E0A2-3B4D-5678-9012-345678901DEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6F9E0A2-3B4D-5678-9012-345678901DEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +91,8 @@ Global
 		{C3338BAD-8BF1-4C53-AF69-766A3B659215} = {6C52D3CB-344B-401F-BDBE-87CC90B969DD}
 		{50F21DA8-717C-4E9B-AA88-CC103284C86E} = {FA1E7992-50C7-44D8-A068-516F139C0C6C}
 		{F2330FC2-F8B7-4E89-9F3F-47FC54FBC45B} = {19F8F184-BA80-452C-B461-4D487FDCBE15}
+		{B5E8D9F1-2A3C-4567-8901-234567890ABC} = {19F8F184-BA80-452C-B461-4D487FDCBE15}
+		{C6F9E0A2-3B4D-5678-9012-345678901DEF} = {19F8F184-BA80-452C-B461-4D487FDCBE15}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {625F21DE-9A73-4420-88E3-04E7C3F83FD4}

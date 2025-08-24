@@ -1,4 +1,5 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
+using System.Globalization;
 
 namespace MSDMarkwort.Kicad.Parser.Model.Common
 {
@@ -12,7 +13,7 @@ namespace MSDMarkwort.Kicad.Parser.Model.Common
 
         public override string ToString()
         {
-            return $"{Width}/{Height}";
+            return $"{Width.ToString(CultureInfo.InvariantCulture)}/{Height.ToString(CultureInfo.InvariantCulture)}";
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
+using System.Globalization;
 
 namespace MSDMarkwort.Kicad.Parser.Model.Common
 {
@@ -12,7 +13,7 @@ namespace MSDMarkwort.Kicad.Parser.Model.Common
 
         public override string ToString()
         {
-            return $"{X}/{Y} ({Angle}°)";
+            return $"{X.ToString(CultureInfo.InvariantCulture)}/{Y.ToString(CultureInfo.InvariantCulture)} ({Angle.ToString(CultureInfo.InvariantCulture)}°)";
         }
     }
 }

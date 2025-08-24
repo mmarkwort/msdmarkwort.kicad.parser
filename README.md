@@ -203,7 +203,3 @@ No.
 ### Will there be writers in the future
 
 Yes.
-
-### Are enums currently supported?
-
-No, but that is planned.
