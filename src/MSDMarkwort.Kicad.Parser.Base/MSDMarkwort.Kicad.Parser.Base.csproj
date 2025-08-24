@@ -5,6 +5,10 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <InternalsVisibleTo Include="MSDMarkwort.Kicad.Parser.Base.Tests" />
+  </ItemGroup>
   <PropertyGroup>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Authors>Manuel Markwort</Authors>

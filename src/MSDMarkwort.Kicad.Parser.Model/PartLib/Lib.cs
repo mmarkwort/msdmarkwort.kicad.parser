@@ -1,4 +1,5 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
+using MSDMarkwort.Kicad.Parser.Model.Common.Enums;
 
 namespace MSDMarkwort.Kicad.Parser.Model.PartLib
 {
@@ -8,7 +9,7 @@ namespace MSDMarkwort.Kicad.Parser.Model.PartLib
         public string Name { get; set; }
 
         [KicadParserSymbol("type")]
-        public string Type { get; set; }
+        public LibraryType Type { get; set; }
 
         [KicadParserSymbol("uri")]
         public string Uri { get; set; }

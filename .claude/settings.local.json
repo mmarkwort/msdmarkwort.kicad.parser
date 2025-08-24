@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(dotnet test:*)",
+      "Bash(dotnet tool install:*)",
+      "Bash(reportgenerator:*)",
+      "Bash(dotnet tool list:*)",
+      "Bash(~/.dotnet/tools/reportgenerator -reports:\"TestResults/**/coverage.cobertura.xml\" -targetdir:\"TestResults/CoverageReport\" -reporttypes:TextSummary)",
+      "Bash(grep:*)",
+      "Bash(dotnet build:*)",
+      "Bash(~/.dotnet/tools/reportgenerator:*)",
+      "Bash(dotnet reportgenerator:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

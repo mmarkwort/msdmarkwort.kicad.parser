@@ -1,4 +1,6 @@
 using System.Text.Json.Serialization;
+using System.Text.Json;
+using System.Text;
 
 namespace MSDMarkwort.Kicad.Parser.Project.Tests
 {
@@ -95,6 +97,209 @@ namespace MSDMarkwort.Kicad.Parser.Project.Tests
             var parserResult = await parser.ParseAsync(inputProjectStream, JsonUnmappedMemberHandling.Disallow);
 
             Assert.That(parserResult.Success, Is.EqualTo(true));
+        }
+
+        [Test]
+        public async Task ParseAsync_InvalidJsonStream_ReturnsFailure()
+        {
+            var invalidJson = "{ invalid json content";
+            await using var stream = new MemoryStream(Encoding.UTF8.GetBytes(invalidJson));
+            
+            var parser = new KicadProjectParser();
+            var result = await parser.ParseAsync(stream);
+            
+            Assert.That(result.Success, Is.False);
+            Assert.That(result.Error, Is.Not.Null);
+            Assert.That(result.Error.Exception, Is.InstanceOf<JsonException>());
+            Assert.That(result.Result, Is.Null);
+        }
+
+        [Test]
+        public async Task ParseAsync_EmptyStream_ReturnsFailure()
+        {
+            await using var stream = new MemoryStream();
+            
+            var parser = new KicadProjectParser();
+            var result = await parser.ParseAsync(stream);
+            
+            Assert.That(result.Success, Is.False);
+            Assert.That(result.Error, Is.Not.Null);
+            Assert.That(result.Result, Is.Null);
+        }
+
+        [Test]
+        public async Task ParseAsync_NullStream_ReturnsFailure()
+        {
+            var parser = new KicadProjectParser();
+            var result = await parser.ParseAsync((Stream)null);
+            
+            Assert.That(result.Success, Is.False);
+            Assert.That(result.Error, Is.Not.Null);
+            Assert.That(result.Error.Exception, Is.InstanceOf<ArgumentNullException>());
+        }
+
+        [Test]
+        public async Task ParseAsync_DisallowUnmappedMembers_WithUnknownProperty_ReturnsFailure()
+        {
+            var jsonWithUnknownProperty = @"{
+                ""board"": {
+                    ""unknown_property"": ""value""
+                }
+            }";
+            await using var stream = new MemoryStream(Encoding.UTF8.GetBytes(jsonWithUnknownProperty));
+            
+            var parser = new KicadProjectParser();
+            var result = await parser.ParseAsync(stream, JsonUnmappedMemberHandling.Disallow);
+            
+            Assert.That(result.Success, Is.False);
+            Assert.That(result.Error, Is.Not.Null);
+            Assert.That(result.Error.Exception, Is.InstanceOf<JsonException>());
+        }
+
+        [Test]
+        public async Task ParseAsync_SkipUnmappedMembers_WithUnknownProperty_ReturnsSuccess()
+        {
+            var jsonWithUnknownProperty = @"{
+                ""board"": {
+                    ""unknown_property"": ""value""
+                }
+            }";
+            await using var stream = new MemoryStream(Encoding.UTF8.GetBytes(jsonWithUnknownProperty));
+            
+            var parser = new KicadProjectParser();
+            var result = await parser.ParseAsync(stream, JsonUnmappedMemberHandling.Skip);
+            
+            Assert.That(result.Success, Is.True);
+            Assert.That(result.Result, Is.Not.Null);
+            Assert.That(result.Error, Is.Null);
+        }
+
+        [Test]
+        public async Task ParseAsync_MinimalValidProject_ReturnsSuccess()
+        {
+            var minimalJson = @"{}";
+            await using var stream = new MemoryStream(Encoding.UTF8.GetBytes(minimalJson));
+            
+            var parser = new KicadProjectParser();
+            var result = await parser.ParseAsync(stream);
+            
+            Assert.That(result.Success, Is.True);
+            Assert.That(result.Result, Is.Not.Null);
+            Assert.That(result.Error, Is.Null);
+            Assert.That(result.Warnings, Is.Not.Null);
+            Assert.That(result.Warnings.Length, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void ParseAsync_FilePath_NonExistentFile_ThrowsException()
+        {
+            var parser = new KicadProjectParser();
+            
+            Assert.ThrowsAsync<FileNotFoundException>(async () =>
+                await parser.ParseAsync("nonexistent_file.kicad_pro"));
+        }
+
+        [Test]
+        public void ParseAsync_NullFilePath_ThrowsException()
+        {
+            var parser = new KicadProjectParser();
+            
+            Assert.ThrowsAsync<ArgumentNullException>(async () => 
+                await parser.ParseAsync((string)null));
+        }
+
+        [Test]
+        public async Task ParseAsync_LargeValidProject_ReturnsSuccess()
+        {
+            var largeJson = @"{
+                ""board"": {
+                    ""design_settings"": {
+                        ""defaults"": {
+                            ""board_outline_line_width"": 0.1,
+                            ""copper_line_width"": 0.2
+                        }
+                    }
+                },
+                ""cvpcb"": {
+                    ""equivalence_files"": []
+                },
+                ""erc"": {
+                    ""erc_exclusions"": []
+                },
+                ""libraries"": {
+                    ""pinned_footprint_libs"": [],
+                    ""pinned_symbol_libs"": []
+                },
+                ""meta"": {
+                    ""version"": 1
+                },
+                ""net_settings"": {
+                    ""classes"": [
+                        {
+                            ""bus_width"": 12,
+                            ""clearance"": 0.2,
+                            ""diff_pair_gap"": 0.25,
+                            ""diff_pair_via_gap"": 0.25,
+                            ""diff_pair_width"": 0.2,
+                            ""line_width"": 0.25,
+                            ""microvia_diameter"": 0.3,
+                            ""microvia_drill"": 0.1,
+                            ""name"": ""Default"",
+                            ""pcb_color"": ""rgba(0, 0, 0, 0.000)"",
+                            ""schematic_color"": ""rgba(0, 0, 0, 0.000)"",
+                            ""track_width"": 0.25,
+                            ""via_diameter"": 0.8,
+                            ""via_drill"": 0.4,
+                            ""wire_width"": 6
+                        }
+                    ],
+                    ""meta"": {
+                        ""version"": 3
+                    }
+                },
+                ""pcbnew"": {
+                    ""last_paths"": {
+                        ""gencad"": """",
+                        ""idf"": """",
+                        ""netlist"": """",
+                        ""specctra_dsn"": """",
+                        ""step"": """",
+                        ""vrml"": """"
+                    },
+                    ""page_layout_descr_file"": """"
+                },
+                ""schematic"": {
+                    ""annotate_start_num"": 0,
+                    ""drawing"": {
+                        ""dashed_lines_dash_length_ratio"": 12.0,
+                        ""dashed_lines_gap_length_ratio"": 3.0,
+                        ""default_line_thickness"": 6.0,
+                        ""default_text_size"": 1.27,
+                        ""field_names"": [],
+                        ""intersheets_ref_own_page"": false,
+                        ""intersheets_ref_prefix"": """",
+                        ""intersheets_ref_short"": false,
+                        ""intersheets_ref_show"": false,
+                        ""intersheets_ref_suffix"": """",
+                        ""junction_size_choice"": 3,
+                        ""label_size_ratio"": 0.375,
+                        ""no_connect_dash_length"": 12.0,
+                        ""no_connect_dash_gap"": 3.0,
+                        ""pin_symbol_size"": 25.0,
+                        ""text_offset_ratio"": 0.15
+                    },
+                    ""legacy_lib_dir"": """",
+                    ""legacy_lib_list"": []
+                }
+            }";
+            await using var stream = new MemoryStream(Encoding.UTF8.GetBytes(largeJson));
+            
+            var parser = new KicadProjectParser();
+            var result = await parser.ParseAsync(stream);
+            
+            Assert.That(result.Success, Is.True);
+            Assert.That(result.Result, Is.Not.Null);
+            Assert.That(result.Error, Is.Null);
         }
     }
 }
