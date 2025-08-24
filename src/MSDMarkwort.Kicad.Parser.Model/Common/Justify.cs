@@ -1,16 +1,17 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
+using MSDMarkwort.Kicad.Parser.Model.Common.Enums;
 
 namespace MSDMarkwort.Kicad.Parser.Model.Common
 {
     public class Justify
     {
         [KicadParameter(0)]
-        public string HorizontalAlignment { get; set; }
+        public HorizontalAlignment HorizontalAlignment { get; set; }
 
         [KicadParameter(1)]
-        public string VerticalAlignment { get; set; }
+        public VerticalAlignment VerticalAlignment { get; set; }
 
         [KicadParameter(2)]
-        public string Mirror { get; set; }
+        public JustifyMirror Mirror { get; set; }
     }
 }

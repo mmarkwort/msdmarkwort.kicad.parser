@@ -22,6 +22,13 @@ namespace MSDMarkwort.Kicad.Parser.Base.Parser.Reflection
         public static ParserWarnings SetProperty(this object target, PropertyInfo propertyInfo, string value)
         {
             var propertySetter = PropertySetters.FirstOrDefault(s => s.TargetType == propertyInfo.PropertyType);
+            
+            // If no direct setter found and property is an enum, create an enum setter
+            if (propertySetter == null && propertyInfo.PropertyType.IsEnum)
+            {
+                propertySetter = new EnumPropertySetter(propertyInfo.PropertyType);
+            }
+            
             if (propertySetter == null)
             {
                 return ParserWarnings.UnknownSetter;

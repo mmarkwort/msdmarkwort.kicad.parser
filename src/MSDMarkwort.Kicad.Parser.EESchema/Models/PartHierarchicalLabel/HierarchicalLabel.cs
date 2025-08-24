@@ -4,13 +4,22 @@ using MSDMarkwort.Kicad.Parser.Model.Common;
 
 namespace MSDMarkwort.Kicad.Parser.EESchema.Models.PartHierarchicalLabel
 {
+    public enum LabelShape
+    {
+        Input,
+        Output,
+        Bidirectional,
+        TriState,
+        Passive
+    }
+
     public class HierarchicalLabel
     {
         [KicadParameter(0)]
         public string Text { get; set; }
 
         [KicadParserSymbol("shape")]
-        public string ShapeType { get; set; }
+        public LabelShape ShapeType { get; set; }
 
         [KicadParserComplexSymbol("at")]
         public PositionAt PositionAt { get; set; } = new PositionAt();

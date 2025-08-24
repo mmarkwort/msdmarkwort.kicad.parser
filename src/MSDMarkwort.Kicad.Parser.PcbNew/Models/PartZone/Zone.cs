@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MSDMarkwort.Kicad.Parser.Base.Attributes;
+using MSDMarkwort.Kicad.Parser.Model.Common;
 using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartZone

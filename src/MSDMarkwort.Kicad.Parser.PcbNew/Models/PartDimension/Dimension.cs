@@ -5,10 +5,19 @@ using MSDMarkwort.Kicad.Parser.PcbNew.Models.PartGr;
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartDimension
 {
+    public enum DimensionType
+    {
+        Aligned,
+        Leader,
+        Center,
+        Orthogonal,
+        Radial
+    }
+
     public class Dimension
     {
         [KicadParserSymbol("type")]
-        public string Type { get; set; }
+        public DimensionType Type { get; set; }
 
         [KicadParserSymbol("layer")]
         public string Layer { get; set; }

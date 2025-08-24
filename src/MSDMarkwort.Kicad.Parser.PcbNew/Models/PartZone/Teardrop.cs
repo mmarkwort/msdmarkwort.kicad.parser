@@ -2,9 +2,17 @@
 
 namespace MSDMarkwort.Kicad.Parser.PcbNew.Models.PartZone
 {
+    public enum TeardropType
+    {
+        TrackEnd,
+        PadVia,
+        Fillet,
+        Curved
+    }
+
     public class Teardrop
     {
         [KicadParserSymbol("type")]
-        public string Type { get; set; }
+        public TeardropType Type { get; set; }
     }
 }

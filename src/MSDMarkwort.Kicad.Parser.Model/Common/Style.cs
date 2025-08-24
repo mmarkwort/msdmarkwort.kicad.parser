@@ -1,4 +1,5 @@
 ﻿using MSDMarkwort.Kicad.Parser.Base.Attributes;
+using MSDMarkwort.Kicad.Parser.Model.Common.Enums;
 
 namespace MSDMarkwort.Kicad.Parser.Model.Common
 {
@@ -23,6 +24,6 @@ namespace MSDMarkwort.Kicad.Parser.Model.Common
         public string ExtensionOffset { get; set; }
 
         [KicadParameter(0)]
-        public string Alignment { get; set; }
+        public HorizontalAlignment Alignment { get; set; }
     }
 }

@@ -24,6 +24,7 @@ or via Visual Studio Package Manager.
 
 #### Example with file on disk
 
+```
 var parser = new KicadProjectParser();
 var parserResult = parser.Parse("myproject.kicad_pro");
 
@@ -33,6 +34,7 @@ if(parser.Success)
     
    //... 
 }
+```
 
 
 ### Eeschema
